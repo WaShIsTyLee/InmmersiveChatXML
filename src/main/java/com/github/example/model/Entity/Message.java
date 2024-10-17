@@ -1,17 +1,25 @@
 package com.github.example.model.Entity;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @XmlRootElement(name = "message")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Message {
-    LocalDateTime fecha;
-    String text;
-    User userSender;
-    User userReceiver;
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class) // Adaptador para LocalDateTime
+    @XmlElement    public LocalDateTime fecha;
+    @XmlElement
+    public String text;
+    @XmlElement
+    public User userSender;
+    @XmlElement
+    public User userReceiver;
 
     public Message(LocalDateTime fecha, String text, User userSender, User userReceiver) {
         this.fecha = fecha;
@@ -19,7 +27,9 @@ public class Message {
         this.userSender = userSender;
         this.userReceiver = userReceiver;
     }
-    @XmlElement
+
+    public Message() {}
+
     public LocalDateTime getFecha() {
         return fecha;
     }
@@ -27,7 +37,7 @@ public class Message {
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
-    @XmlElement
+
     public String getText() {
         return text;
     }
@@ -35,7 +45,7 @@ public class Message {
     public void setText(String text) {
         this.text = text;
     }
-    @XmlElement
+
     public User getUserSender() {
         return userSender;
     }
@@ -44,7 +54,7 @@ public class Message {
         this.userSender = userSender;
     }
 
-    @XmlElement
+
     public User getUserReceiver() {
         return userReceiver;
     }

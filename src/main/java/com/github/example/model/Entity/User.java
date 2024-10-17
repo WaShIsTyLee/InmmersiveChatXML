@@ -1,16 +1,20 @@
 package com.github.example.model.Entity;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 @XmlRootElement(name = "user")
-public class User {
+@XmlAccessorType(XmlAccessType.FIELD)
 
-    String name;
-    String email;
-    String nickname;
-    String password;
+public class User {
+    @XmlElement
+    public String name;
+    @XmlElement
+    public String email;
+    @XmlElement
+    public String nickname;
+    @XmlElement
+    public String password;
 
 
     public User(String name, String email, String password, String nickname) {
@@ -24,7 +28,12 @@ public class User {
 
     }
 
-    @XmlElement
+    public User(String nickname) {
+        this.nickname = nickname;
+
+    }
+
+
     public String getNickname() {
         return nickname;
     }
@@ -34,7 +43,6 @@ public class User {
     }
 
 
-    @XmlElement
     public String getName() {
         return name;
     }
@@ -43,7 +51,7 @@ public class User {
         this.name = name;
     }
 
-    @XmlElement
+
     public String getEmail() {
         return email;
     }
@@ -52,7 +60,7 @@ public class User {
         this.email = email;
     }
 
-    @XmlElement
+
     public String getPassword() {
         return password;
     }
