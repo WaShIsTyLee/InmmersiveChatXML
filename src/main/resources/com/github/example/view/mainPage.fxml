@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPanel" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainController">
+   <children>
+      <ImageView fitHeight="237.0" fitWidth="311.0" layoutX="173.0" layoutY="106.0">
+         <image>
+            <Image url="@FotoNiños.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
