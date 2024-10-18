@@ -3,6 +3,7 @@ module com.github.example {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.xml.bind;
+    requires java.desktop;
 
     // Aperturas necesarias para acceso reflexivo por JavaFX y JAXB
     opens com.github.example to javafx.fxml;  // JavaFX necesita acceso a este paquete
