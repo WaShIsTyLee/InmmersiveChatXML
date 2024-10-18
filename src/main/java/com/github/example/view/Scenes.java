@@ -4,7 +4,9 @@ public enum Scenes {
 
     ROOT("view/Layout.fxml"),
     MAINPAGE("view/mainPage.fxml"),
+    REGISTRO("view/registro.fxml"),
     INICIOSESION("view/InicioSesion.fxml");
+
 
 
 
