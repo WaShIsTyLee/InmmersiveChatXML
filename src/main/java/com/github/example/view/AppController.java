@@ -6,34 +6,40 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AppController extends Controller implements Initializable {
 
 
-
     @FXML
     private BorderPane bp;
     private Controller centerController;
+    @FXML
+    static Alert alertError = new Alert(Alert.AlertType.ERROR);
 
+    @FXML
+    public static void showAlertForLogin() {
+        alertError.setTitle("❌ Error al registrarse ❌");
+        alertError.setHeaderText(null);
+        alertError.setContentText("La contraseña o el Email no coinciden, inténtelo de nuevo.");
+        alertError.showAndWait();
+    }
 
 
     @Override
     public void onOpen(Object input) throws Exception {
-        App.currentController.changeScene(Scenes.MAINPAGE, null);
+        App.currentController.changeScene(Scenes.INICIOSESION, null);
     }
 
 
     @FXML
-    public void initialize(URL url, ResourceBundle rb)  {
+    public void initialize(URL url, ResourceBundle rb) {
     }
 
     public static View loadFXML(Scenes scenes) throws Exception {
@@ -68,11 +74,6 @@ public class AppController extends Controller implements Initializable {
         view.controller.onOpen(parent);
         stage.showAndWait();
     }
-
-
-    public void onClose(Object output) {
-    }
-
 
 
 }

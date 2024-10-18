@@ -14,7 +14,6 @@ public abstract class Controller {
 
     public abstract void onOpen(Object input) throws Exception;
 
-
 }
 
 
