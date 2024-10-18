@@ -25,12 +25,10 @@ public class User {
     }
 
     public User() {
-
     }
 
     public User(String nickname) {
         this.nickname = nickname;
-
     }
 
 
@@ -42,7 +40,6 @@ public class User {
         this.nickname = nickname;
     }
 
-
     public String getName() {
         return name;
     }
@@ -51,7 +48,6 @@ public class User {
         this.name = name;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -59,7 +55,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getPassword() {
         return password;

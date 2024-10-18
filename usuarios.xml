@@ -6,4 +6,10 @@
         <nickname>aaaaaaaaaaa</nickname>
         <password>aaaaaaaa</password>
     </user>
+    <user>
+        <name>ada</name>
+        <email>jd</email>
+        <nickname>jhdj</nickname>
+        <password>jdh</password>
+    </user>
 </users>
