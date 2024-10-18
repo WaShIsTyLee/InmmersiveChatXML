@@ -31,5 +31,6 @@ public class RegistroController extends Controller implements Initializable {
     @FXML
     public void changeSceneToInicioSesion() throws Exception {
         App.currentController.changeScene(Scenes.INICIOSESION, null);
+        System.out.println("hola");
     }
 }
