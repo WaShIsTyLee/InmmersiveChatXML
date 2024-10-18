@@ -25,16 +25,14 @@ public class RegistroController extends Controller implements Initializable {
     PasswordField contrasena;
     @FXML
     Button registrar;
+
     @FXML
     private User takeValuesRegister() throws Exception {
         User nuevoUsuario = getValuesFromRegister();
-
         if (nuevoUsuario == null) {
             return null;
         }
-
         registerUser(nuevoUsuario);
-
         return nuevoUsuario;
     }
 
@@ -42,23 +40,19 @@ public class RegistroController extends Controller implements Initializable {
         if (nombre == null || contrasena == null || email == null || nickname == null) {
             throw new NullPointerException("Campos no inicializados");
         }
-
         String nombreText = nombre.getText();
         String password = contrasena.getText();
         String emailText = email.getText();
         String nicknameText = nickname.getText();
-
         if (nombreText.isEmpty() || emailText.isEmpty() || nicknameText.isEmpty() || password.isEmpty()) {
             System.out.println("Error: Todos los campos son obligatorios.");
             return null;
         }
-
         return new User(nombreText, emailText, password, nicknameText);
     }
 
     private void registerUser(User nuevoUsuario) throws Exception {
         List<User> todosUsuarios = XMLUser.obtenerUsuarios();
-
         if (todosUsuarios.isEmpty()) {
             XMLUser.agregarUsuario(nuevoUsuario);
             changeSceneToInicioSesion();
@@ -70,7 +64,6 @@ public class RegistroController extends Controller implements Initializable {
                     break;
                 }
             }
-
             if (usuarioExistente) {
                 System.out.println("El usuario ya está registrado.");
             } else {
@@ -80,21 +73,16 @@ public class RegistroController extends Controller implements Initializable {
         }
     }
 
-
-
     @Override
     public void onOpen(Object input) throws Exception {
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     @FXML
     public void changeSceneToInicioSesion() throws Exception {
         App.currentController.changeScene(Scenes.INICIOSESION, null);
-        System.out.println("hola");
     }
 }
