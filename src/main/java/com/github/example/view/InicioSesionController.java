@@ -31,7 +31,6 @@ public class InicioSesionController extends Controller implements Initializable 
         if (nombreUsuario == null || contraseña == null) {
             throw new NullPointerException("Campos no inicializados");
         }
-
         String nickname = nombreUsuario.getText();
         String password = contraseña.getText();
         User auxUser = new User();
@@ -41,11 +40,10 @@ public class InicioSesionController extends Controller implements Initializable 
         if (fullUser != null) {
             System.out.println("Credenciales correctas");
             Sesion.getInstancia().logIn(fullUser);
-            App.currentController.changeScene(Scenes.MAINPAGE, null);
+            goToMainPage();
         } else {
             AppController.showAlertForLogin();
         }
-
         return fullUser;
     }
 
@@ -71,8 +69,14 @@ public class InicioSesionController extends Controller implements Initializable 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
     @FXML
-    private void goToLoginRegisterView() throws Exception {
+    private void goToMainPage() throws Exception {
         App.currentController.changeScene(Scenes.MAINPAGE, null);
+    }
+
+    @FXML
+    private void goToRegisterPage() throws Exception {
+        App.currentController.changeScene(Scenes.REGISTRO, null);
     }
 }
