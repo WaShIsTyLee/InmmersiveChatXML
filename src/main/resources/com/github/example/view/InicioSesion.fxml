@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #B39DDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.InicioSesionController">
+   <children>
+      <ImageView fitHeight="162.0" fitWidth="167.0" layoutX="216.0" layoutY="28.0">
+         <image>
+            <Image url="@LogoCircularInmmersiveChat.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nombreUsuario" layoutX="227.0" layoutY="217.0" promptText="Nickname" />
+      <PasswordField fx:id="contraseña" layoutX="227.0" layoutY="265.0" promptText="Contraseña" />
+      <Button fx:id="buttonIniciarSesion" layoutX="257.0" layoutY="309.0" mnemonicParsing="false" onAction="#takeValuesLogin" text="Iniciar Sesion" />
+      <Button fx:id="buttonRegister" layoutX="510.0" layoutY="351.0" mnemonicParsing="false" text="Registrarse" />
+      <Text layoutX="350.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta? Registrate" />
+   </children>
+</AnchorPane>

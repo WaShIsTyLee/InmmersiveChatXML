@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XMLUser {
-    private File archivoUsuarios = new File("usuarios.xml");
+    private static File archivoUsuarios = new File("usuarios.xml");
 
 
-    public void agregarUsuario(User user) throws Exception {
+    public static void agregarUsuario(User user) throws Exception {
         List<User> usuarios = obtenerUsuarios();
         usuarios.add(user);
         guardarUsuarios(usuarios);
     }
 
 
-    public List<User> obtenerUsuarios() throws Exception {
+    public static List<User> obtenerUsuarios() throws Exception {
         if (archivoUsuarios.exists() && archivoUsuarios.length() > 0) {
             JAXBContext context = JAXBContext.newInstance(UserWrapper.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -33,10 +33,9 @@ public class XMLUser {
     }
 
 
-    private void guardarUsuarios(List<User> usuarios) throws Exception {
+    private static void guardarUsuarios(List<User> usuarios) throws Exception {
         UserWrapper wrapper = new UserWrapper();
-        wrapper.setUsers(usuarios); // Establecer la lista de usuarios en el wrapper
-
+        wrapper.setUsers(usuarios);
         JAXBContext context = JAXBContext.newInstance(UserWrapper.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

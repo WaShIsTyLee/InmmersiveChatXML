@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
+        <name>Juan Perez</name>
         <email>juan.perez@example.com</email>
         <nickname>juanito</nickname>
-        <password>password123</password>
+        <password>ejemplo</password>
     </user>
     <user>
+        <name>Mariaaa</name>
         <email>maria@</email>
         <nickname>mariquilla</nickname>
-        <password>password123</password>
-    </user>
-    <user name="Juan Perez">
-        <email>juan.perez@example.com</email>
-        <nickname>juanito</nickname>
-        <password>password123</password>
-    </user>
-    <user name="Mariaaa">
-        <email>maria@</email>
-        <nickname>mariquilla</nickname>
-        <password>password123</password>
+        <password>ejemplo</password>
     </user>
 </users>
