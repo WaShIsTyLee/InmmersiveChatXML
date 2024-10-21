@@ -48,7 +48,7 @@ public class RegistroController extends Controller implements Initializable {
             System.out.println("Error: Todos los campos son obligatorios.");
             return null;
         }
-        return new User(nombreText, emailText, password, nicknameText);
+        return new User(nombreText, emailText, nicknameText, password);
     }
 
     private void registerUser(User nuevoUsuario) throws Exception {

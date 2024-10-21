@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPanel" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
    <children>
-      <ImageView fitHeight="237.0" fitWidth="311.0" layoutX="173.0" layoutY="106.0">
-         <image>
-            <Image url="@FotoNiños.jpeg" />
-         </image>
-      </ImageView>
+      <SplitPane dividerPositions="0.21256684491978606" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <items>
+            <VBox fx:id="contactos" prefHeight="398.0" prefWidth="250.0" styleClass="black">
+               <children>
+                  <ListView fx:id="contactListView" prefHeight="398.0" prefWidth="176.0" />
+                  <TextField fx:id="textField" prefHeight="26.0" prefWidth="420.0" promptText="Nickname" />
+                  <HBox prefHeight="26.0" prefWidth="196.0">
+                     <children>
+                        <Button fx:id="button" mnemonicParsing="false" onAction="#añadirContactos" prefHeight="26.0" prefWidth="125.0" text="Añadir Contacto" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vBoxMensajes" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text fx:id="textNombreContacto" strokeType="OUTSIDE" strokeWidth="0.0" text="NombreContacto" textAlignment="CENTER" wrappingWidth="466.9367561340332">
+                     <font>
+                        <Font name="Ink Free" size="25.0" />
+                     </font>
+                  </Text>
+                  <ScrollPane fx:id="scrollPaneMensajes" prefHeight="370.0" prefWidth="468.0" />
+                  <HBox prefHeight="58.0" prefWidth="468.0">
+                     <children>
+                        <TextField prefHeight="26.0" prefWidth="420.0" />
+                        <Button mnemonicParsing="false" onAction="#añadirContactos" text="Enviar" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
    </children>
 </AnchorPane>

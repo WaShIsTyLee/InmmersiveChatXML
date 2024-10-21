@@ -1,12 +1,13 @@
 package com.github.example.model.Entity;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-public class User {
+public class User  {
     @XmlElement
     public String name;
     @XmlElement
@@ -15,13 +16,30 @@ public class User {
     public String nickname;
     @XmlElement
     public String password;
+    @XmlElement
+    public List<Contacto> contactos;
 
 
-    public User(String name, String email, String password, String nickname) {
+    public User(String name, String email, String nickname, String password, List<Contacto> contactos) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.nickname = nickname;
+        this.password = password;
+        this.contactos = contactos;
+    }
+    public User(String name, String email, String nickname, String password) {
+        this.name = name;
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
+
+    public List<Contacto> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(List<Contacto> contactos) {
+        this.contactos = contactos;
     }
 
     public User() {

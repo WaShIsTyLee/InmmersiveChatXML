@@ -16,8 +16,8 @@
             <Image url="@LogoCircularInmmersiveChat.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nombreUsuario" layoutX="394.0" layoutY="293.0" prefHeight="18.0" prefWidth="112.0" promptText="Nickname" />
-      <PasswordField fx:id="contraseña" layoutX="394.0" layoutY="328.0" prefHeight="26.0" prefWidth="112.0" promptText="Contraseña" />
+      <TextField fx:id="nombreUsuario" layoutX="394.0" layoutY="293.0" prefHeight="18.0" prefWidth="112.0" promptText="Nickname" text="ejemplo" />
+      <PasswordField fx:id="contraseña" layoutX="394.0" layoutY="328.0" prefHeight="26.0" prefWidth="112.0" promptText="Contraseña" text="ejemplo" />
       <Button fx:id="buttonIniciarSesion" layoutX="405.0" layoutY="376.0" mnemonicParsing="false" onAction="#takeValuesLogin" prefHeight="17.0" prefWidth="89.0" text="Iniciar Sesion" textFill="#fb00ff" />
       <Button fx:id="buttonRegister" layoutX="584.0" layoutY="422.0" mnemonicParsing="false" onAction="#goToRegisterPage" prefHeight="26.0" prefWidth="90.0" text="Registrarse" />
       <Text layoutX="394.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta? Registrate" wrappingWidth="178.19992065429676">
