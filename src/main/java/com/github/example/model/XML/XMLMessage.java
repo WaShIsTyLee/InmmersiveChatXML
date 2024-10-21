@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XMLMessage {
-    private File archivoMessages = new File("messages.xml");
+    private static File archivoMessages = new File("messages.xml");
 
-    //agregar mesnaje
-    public void addMessage(Message message) throws Exception {
+
+    public static void addMessage(Message message) throws Exception {
         List<Message> messages = recoverMessages();
         messages.add(message);
         saveMessages(messages);
     }
 
-    public List<Message> recoverMessages() throws JAXBException {
+    public static List<Message> recoverMessages() throws JAXBException {
         if (archivoMessages.exists() && archivoMessages.length() > 0) {
             JAXBContext context = JAXBContext.newInstance(MessageWrapper.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -33,7 +33,7 @@ public class XMLMessage {
     }
 
 
-    private void saveMessages(List<Message> messages) throws Exception {
+    private static void saveMessages(List<Message> messages) throws Exception {
         MessageWrapper wrapper = new MessageWrapper();
         wrapper.setMessages(messages);
 
