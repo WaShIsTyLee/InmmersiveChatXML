@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
-        <name>Mariaaa</name>
-        <email>maria@</email>
-        <nickname>mariquilla</nickname>
-        <password>password123</password>
+        <name>ejemplo1</name>
+        <email>ejemplo1</email>
+        <nickname>ejemplo1</nickname>
+        <password>ejemplo1</password>
         <contactos>
-            <email>Luis Fernandez</email>
-            <name>luis.fernandez@example.com</name>
-            <nickname>luisito</nickname>
-        </contactos>
-        <contactos>
-            <email>Elena Gomez</email>
-            <name>elena.gomez@example.com</name>
-            <nickname>elenita</nickname>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
         </contactos>
     </user>
     <user>
@@ -22,40 +17,25 @@
         <nickname>ejemplo</nickname>
         <password>ejemplo</password>
         <contactos>
-            <email>juan.perez@example.com</email>
-            <name>Juan Perez</name>
-            <nickname>juanito</nickname>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
         </contactos>
         <contactos>
-            <email>maria@</email>
-            <name>Mariaaa</name>
-            <nickname>mariquilla</nickname>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
         </contactos>
     </user>
     <user>
-        <name>Juan Perez</name>
-        <email>juan.perez@example.com</email>
-        <nickname>juanito</nickname>
-        <password>password123</password>
+        <name>ejemplo2</name>
+        <email>ejemplo2</email>
+        <nickname>ejemplo2</nickname>
+        <password>ejemplo</password>
         <contactos>
-            <email>Carlos Lopez</email>
-            <name>carlos.lopez@example.com</name>
-            <nickname>carlitos</nickname>
-        </contactos>
-        <contactos>
-            <email>Ana Garcia</email>
-            <name>ana.garcia@example.com</name>
-            <nickname>anita</nickname>
-        </contactos>
-        <contactos>
-            <email>Pedro Ramirez</email>
-            <name>pedro.ramirez@example.com</name>
-            <nickname>pedrito</nickname>
-        </contactos>
-        <contactos>
-            <email>maria@</email>
-            <name>Mariaaa</name>
-            <nickname>mariquilla</nickname>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
         </contactos>
     </user>
 </users>

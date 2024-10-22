@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <messages>
     <message>
-        <fecha>2024-10-21T13:43:23.7350118</fecha>
+        <fecha>2024-10-21T19:46:31.4169832</fecha>
         <text>hola guapo</text>
-        <userSender>
-            <nickname>juanito</nickname>
-        </userSender>
-        <userReceiver>
-            <nickname>mariquilla</nickname>
-        </userReceiver>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-21T19:54:57.1959317</fecha>
+        <text>hola ejemplo soy ejemplo1</text>
+        <contactoEmisor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-21T19:59:34.3031826</fecha>
+        <text>hola ejemplo2 soy ejemplo</text>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
+        </contactoReceptor>
     </message>
 </messages>
