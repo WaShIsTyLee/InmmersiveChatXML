@@ -12,7 +12,7 @@ import java.time.LocalTime;
 @XmlRootElement(name = "message")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Message {
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class) // Adaptador para LocalDateTime
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     @XmlElement    public LocalDateTime fecha;
     @XmlElement
     public String text;

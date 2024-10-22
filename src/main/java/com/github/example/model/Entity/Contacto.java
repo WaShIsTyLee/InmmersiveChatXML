@@ -10,7 +10,6 @@ public class Contacto {
     private String name;
     private String nickname;
 
-    // Constructor vacío
     public Contacto() {
     }
 

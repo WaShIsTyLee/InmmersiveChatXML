@@ -29,7 +29,6 @@ public class MainPageController extends Controller implements Initializable {
     @FXML
     private VBox vBoxMensajes;
 
-
     @FXML
     private VBox contactos;
     @FXML
