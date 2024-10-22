@@ -38,10 +38,10 @@
                   </Text>
 
                   <!-- ScrollPane para Mensajes -->
-                  <ScrollPane fx:id="scrollPaneMensajes" prefHeight="370.0" prefWidth="468.0">
+                  <ScrollPane fx:id="scrollPaneMensajes" prefHeight="370.0" prefWidth="468.0" fitToWidth="true" fitToHeight="true">
                      <content>
                         <!-- VBox para contener los mensajes del usuario -->
-                        <VBox fx:id="vBoxMensajes" />
+                        <VBox fx:id="vBoxMensajes" VBox.vgrow="ALWAYS" />
                      </content>
                   </ScrollPane>
 

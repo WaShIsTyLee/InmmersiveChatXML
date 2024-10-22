@@ -9,7 +9,10 @@ import com.github.example.model.XML.XMLMessage;
 import com.github.example.model.XML.XMLUser;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -170,14 +173,33 @@ public class MainPageController extends Controller implements Initializable {
             List<Message> mensajes = recogerMensajesdeUsuario(contacto);
 
             for (Message message : mensajes) {
-                Text mensajeText = new Text(message.getText());
-                mensajeText.setStyle("-fx-padding: 5;");
-                vBoxMensajes.getChildren().add(mensajeText);
+                Label mensajeLabel = new Label(message.getText());
+                mensajeLabel.setStyle("-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
+                mensajeLabel.setWrapText(true);
+                mensajeLabel.setMaxWidth(300); // Limitar el ancho de los mensajes
+
+                HBox hbox = new HBox();
+                hbox.setPadding(new Insets(5));
+
+                if (message.getContactoEmisor().getNickname().equals(Sesion.getInstancia().getUsuarioIniciado().getNickname())) {
+                    mensajeLabel.setStyle("-fx-background-color: #B39DDB; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
+                    hbox.setAlignment(Pos.CENTER_RIGHT); // Alinear el mensaje a la derecha
+                    hbox.getChildren().add(mensajeLabel);
+                } else {
+                    mensajeLabel.setStyle("-fx-background-color: #E0E0E0; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
+                    hbox.setAlignment(Pos.CENTER_LEFT); // Alinear el mensaje a la izquierda
+                    hbox.getChildren().add(mensajeLabel);
+                }
+
+                vBoxMensajes.getChildren().add(hbox);
             }
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
     private User buscarUsuarioPorNickname(String nickname) throws Exception {
         List<User> listaUsuarios = XMLUser.obtenerUsuarios();
@@ -223,23 +245,31 @@ public class MainPageController extends Controller implements Initializable {
 
     public void guardarMensaje() throws Exception {
         String mensajeRecogido = mensajeTextField.getText();
+        if (mensajeRecogido == null || mensajeRecogido.trim().isEmpty()) {
+            return;
+        }
+
         List<Message> mensajesRecogidos = XMLMessage.recoverMessages();
         LocalDateTime ahora = LocalDateTime.now();
         User user = Sesion.getInstancia().getUsuarioIniciado();
-        User usuarioReceptor = new User();
+
         String nicknameReceptor = getselectedNickname();
+        User usuarioReceptor = new User();
         List<User> todosUsuarios = XMLUser.obtenerUsuarios();
-        for (User user2 : todosUsuarios){
+
+        for (User user2 : todosUsuarios) {
             if (user2.getNickname().equals(nicknameReceptor)) {
                 usuarioReceptor = user2;
+                break;
             }
         }
-        Contacto contactoEmisor = new Contacto(user.getEmail(),user.getName(),user.getNickname());
+        Contacto contactoEmisor = new Contacto(user.getEmail(), user.getName(), user.getNickname());
         Contacto contactorReceptor = new Contacto(usuarioReceptor.getEmail(), usuarioReceptor.getName(), usuarioReceptor.getNickname());
-        Message message = new Message(ahora,mensajeRecogido,contactoEmisor,contactorReceptor);
-
+        Message message = new Message(ahora, mensajeRecogido, contactoEmisor, contactorReceptor);
         mensajesRecogidos.add(message);
-        XMLMessage.saveMessages(mensajesRecogidos);
-
+        XMLMessage.saveMessages(mensajesRecogidos);  // Guardar la lista actualizada de mensajes
+        mensajeTextField.clear();
+        mostrarMensajes(usuarioReceptor);
     }
+
 }
