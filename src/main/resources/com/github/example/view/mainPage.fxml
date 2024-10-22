@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
    <children>
-      <SplitPane dividerPositions="0.21256684491978606" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+      <SplitPane fx:id="splitpane" dividerPositions="0.21256684491978606" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
          <items>
             <VBox fx:id="contactos" prefHeight="398.0" prefWidth="250.0" styleClass="black">
                <children>
@@ -21,23 +21,35 @@
                   <TextField fx:id="textField" prefHeight="26.0" prefWidth="420.0" promptText="Nickname" />
                   <HBox prefHeight="26.0" prefWidth="196.0">
                      <children>
-                        <Button fx:id="button" mnemonicParsing="false" onAction="#añadirContactos" prefHeight="26.0" prefWidth="125.0" text="Añadir Contacto" />
+                        <Button fx:id="buttonAnadirContacto" mnemonicParsing="false" onAction="#añadirContactos" prefHeight="26.0" prefWidth="125.0" text="Añadir Contacto" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="vBoxMensajes" prefHeight="200.0" prefWidth="100.0">
+
+            <!-- Sección de Mensajes -->
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <!-- Nombre del Contacto Seleccionado -->
                   <Text fx:id="textNombreContacto" strokeType="OUTSIDE" strokeWidth="0.0" text="NombreContacto" textAlignment="CENTER" wrappingWidth="466.9367561340332">
                      <font>
                         <Font name="Ink Free" size="25.0" />
                      </font>
                   </Text>
-                  <ScrollPane fx:id="scrollPaneMensajes" prefHeight="370.0" prefWidth="468.0" />
+
+                  <!-- ScrollPane para Mensajes -->
+                  <ScrollPane fx:id="scrollPaneMensajes" prefHeight="370.0" prefWidth="468.0">
+                     <content>
+                        <!-- VBox para contener los mensajes del usuario -->
+                        <VBox fx:id="vBoxMensajes" />
+                     </content>
+                  </ScrollPane>
+
+                  <!-- Campo para Escribir Mensaje y Botón para Enviar -->
                   <HBox prefHeight="58.0" prefWidth="468.0">
                      <children>
-                        <TextField prefHeight="26.0" prefWidth="420.0" />
-                        <Button mnemonicParsing="false" onAction="#añadirContactos" text="Enviar" />
+                        <TextField fx:id="mensajeTextField" prefHeight="26.0" prefWidth="417.0" promptText="Escribe tu mensaje" />
+                        <Button fx:id="buttonAnadirMensaje" mnemonicParsing="false" onAction="#guardarMensaje" text="Enviar" />
                      </children>
                   </HBox>
                </children>

@@ -17,15 +17,15 @@ public class Message {
     @XmlElement
     public String text;
     @XmlElement
-    public User userSender;
+    public Contacto contactoEmisor;
     @XmlElement
-    public User userReceiver;
+    public Contacto contactoReceptor;
 
-    public Message(LocalDateTime fecha, String text, User userSender, User userReceiver) {
+    public Message(LocalDateTime fecha, String text, Contacto contactoEmisor, Contacto contactoReceptor) {
         this.fecha = fecha;
         this.text = text;
-        this.userSender = userSender;
-        this.userReceiver = userReceiver;
+        this.contactoEmisor = contactoEmisor;
+        this.contactoReceptor = contactoReceptor;
     }
 
     public Message() {}
@@ -46,21 +46,20 @@ public class Message {
         this.text = text;
     }
 
-    public User getUserSender() {
-        return userSender;
+    public Contacto getContactoEmisor() {
+        return contactoEmisor;
     }
 
-    public void setUserSender(User userSender) {
-        this.userSender = userSender;
+    public void setContactoEmisor(Contacto contactoEmisor) {
+        this.contactoEmisor = contactoEmisor;
     }
 
-
-    public User getUserReceiver() {
-        return userReceiver;
+    public Contacto getContactoReceptor() {
+        return contactoReceptor;
     }
 
-    public void setUserReceiver(User userReceiver) {
-        this.userReceiver = userReceiver;
+    public void setContactoReceptor(Contacto contactoReceptor) {
+        this.contactoReceptor = contactoReceptor;
     }
 
     @Override
@@ -68,8 +67,8 @@ public class Message {
         return "Message{" +
                 "fecha=" + fecha +
                 ", text='" + text + '\'' +
-                ", userSender=" + userSender +
-                ", userReceiver=" + userReceiver +
+                ", contactoEmisor=" + contactoEmisor +
+                ", contactoReceptor=" + contactoReceptor +
                 '}';
     }
 }

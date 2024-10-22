@@ -33,7 +33,7 @@ public class XMLMessage {
     }
 
 
-    private static void saveMessages(List<Message> messages) throws Exception {
+    public static void saveMessages(List<Message> messages) throws Exception {
         MessageWrapper wrapper = new MessageWrapper();
         wrapper.setMessages(messages);
 

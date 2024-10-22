@@ -4,6 +4,7 @@ import com.github.example.model.Entity.Contacto;
 import com.github.example.model.Entity.Message;
 import com.github.example.model.Entity.Sesion;
 import com.github.example.model.Entity.User;
+import com.github.example.model.XML.MessageWrapper;
 import com.github.example.model.XML.XMLMessage;
 import com.github.example.model.XML.XMLUser;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.text.Text;
 
 import javax.xml.bind.JAXBException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,12 +36,22 @@ public class MainPageController extends Controller implements Initializable {
     @FXML
     private VBox mensajes;
     @FXML
-    private Button button;
+    private Button buttonAnadirContacto;
     @FXML
     private TextField textField;
 
     @FXML
     private ListView<Contacto> contactListView;
+
+    @FXML
+    TextField mensajeTextField;
+
+    @FXML
+    private Button buttonAnadirMensaje;
+
+    private String selectedNickname;
+
+
 
     @FXML
     public void obtenerContactos(User usuario) throws Exception {
@@ -126,7 +138,8 @@ public class MainPageController extends Controller implements Initializable {
     private void agregarListenerSeleccion() {
         contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                textNombreContacto.setText(newValue.getNickname());
+                selectedNickname = newValue.getNickname();
+                textNombreContacto.setText(selectedNickname);
                 System.out.println("Contacto seleccionado: " + newValue.getNickname());
                 User user = null;
                 try {
@@ -144,10 +157,17 @@ public class MainPageController extends Controller implements Initializable {
         });
     }
 
+    public String getselectedNickname() {
+        return selectedNickname;
+    }
+
     private void mostrarMensajes(User user) {
         vBoxMensajes.getChildren().clear();
+        Contacto contacto = new Contacto(user.getEmail(), user.getName(), user.getNickname());
+
         try {
-            List<Message> mensajes = recogerMensajesdeUsuario(user);
+            List<Message> mensajes = recogerMensajesdeUsuario(contacto);
+
             for (Message message : mensajes) {
                 Text mensajeText = new Text(message.getText());
                 mensajeText.setStyle("-fx-padding: 5;");
@@ -169,16 +189,56 @@ public class MainPageController extends Controller implements Initializable {
         return user;
     }
 
-    private List<Message> recogerMensajesdeUsuario(User user) throws JAXBException {
+    private List<Message> recogerMensajesdeUsuario(Contacto contacto) throws JAXBException {
         List<Message> mensajes = XMLMessage.recoverMessages();
         List<Message> mensajesFiltrados = new ArrayList<>();
         User usuarioIniciado = Sesion.getInstancia().getUsuarioIniciado();
+
         for (Message message : mensajes) {
-            if ((message.getUserSender().equals(usuarioIniciado) && message.getUserReceiver().equals(user)) ||
-                    (message.getUserSender().equals(user) && message.getUserReceiver().equals(usuarioIniciado))) {
+            if ((message.getContactoEmisor().getNickname().equals(usuarioIniciado.getNickname()) &&
+                    message.getContactoReceptor().getNickname().equals(contacto.getNickname())) ||
+
+                    (message.getContactoEmisor().getNickname().equals(contacto.getNickname()) &&
+                            message.getContactoReceptor().getNickname().equals(usuarioIniciado.getNickname()))) {
                 mensajesFiltrados.add(message);
             }
         }
         return mensajesFiltrados;
+    }
+
+
+    public User recogerUsuarioPorNickname(String nickname) throws Exception {
+        List<User> todosUsuarios= XMLUser.obtenerUsuarios();
+        User usuario = null;
+        for (User user : todosUsuarios){
+            if (user.getNickname().equals(nickname)) {
+                usuario = user;
+            }
+        }
+        return usuario;
+    }
+
+
+
+    public void guardarMensaje() throws Exception {
+        String mensajeRecogido = mensajeTextField.getText();
+        List<Message> mensajesRecogidos = XMLMessage.recoverMessages();
+        LocalDateTime ahora = LocalDateTime.now();
+        User user = Sesion.getInstancia().getUsuarioIniciado();
+        User usuarioReceptor = new User();
+        String nicknameReceptor = getselectedNickname();
+        List<User> todosUsuarios = XMLUser.obtenerUsuarios();
+        for (User user2 : todosUsuarios){
+            if (user2.getNickname().equals(nicknameReceptor)) {
+                usuarioReceptor = user2;
+            }
+        }
+        Contacto contactoEmisor = new Contacto(user.getEmail(),user.getName(),user.getNickname());
+        Contacto contactorReceptor = new Contacto(usuarioReceptor.getEmail(), usuarioReceptor.getName(), usuarioReceptor.getNickname());
+        Message message = new Message(ahora,mensajeRecogido,contactoEmisor,contactorReceptor);
+
+        mensajesRecogidos.add(message);
+        XMLMessage.saveMessages(mensajesRecogidos);
+
     }
 }
