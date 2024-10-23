@@ -1,40 +1,35 @@
-# 📦 Proyecto Nombre
+# [TaskFlow🚀](https://github.com/WaShIsTyLee/TaskFlow)
 
-> Breve descripción de tu proyecto. Ejemplo: "Una aplicación para gestionar tareas de manera eficiente y colaborativa."
+___
+
+_Es el proyecto de segunda evaluación realizador por [Washistylee](https://github.com/WaShIsTyLee), [Franfuu](https://github.com/Franfuu) y [elrisaslol](https://github.com/elrisaslol)._
+## Descripción 📄
+
+___
+
+_TaskFlow es una aplicación de gestión de project que funciona en tu máquina local que incluye persistencia de datos en inicio de sesión. Permite a los usuarios crear project personalizados con diversas tareas a realizar, de las cuales se podrá indicar su progreso. Los usuarios pueden tener diferentes roles: los creadores tienen más funciones que los colaboradores. Los creadores pueden añadir y eliminar colaboradores, asignar tareas a los colaboradores del proyecto, establecer fechas de vencimiento y el estado actual de las tareas, además de agregar comentarios en las mismas. Mientras tanto, los colaboradores solo pueden marcar el progreso de las tareas y añadir comentarios en las mismas._
+
+## Autores ✒️
+
+___
+
+* **Juan Jesús López** - *Trabajo Inicial, Scrum Master* - [Washistylee](https://github.com/WaShIsTyLee)
+* **Francisco Pérez** - *Codificación, documentación y presentación* - [Franfuu](https://github.com/Franfuu)
+* **Salvador Sanchéz** - *Codificación* - [elrisaslol](https://github.com/elrisaslol)
+
+## Construido con 🛠️⚙️
+___
+
+* [Java](https://www.java.com/es/) - Lenguaje empleado.
+* [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/) - Entorno de desarrollo empleado.
+* [GitHub](https://github.com/) - Usado para el control de commits y versiones.
+
+## Wiki 📖
+___
+Puedes ver y descargar en nuestro proyecto [TaskFlow](https://github.com/WaShIsTyLee/TaskFlow).
 
 
-## ✨ Características
+## Gracias profes 🎁
+___
+Damos las gracias [Carlos Serrano](https://github.com/Developodo) y [Rafa Morales](https://github.com/RafaTicArte) por ayudarnos con bugs y reparar el código en diversas ocasiones.
 
-- ✅ Funcionalidad 1: Breve descripción
-- 🚀 Funcionalidad 2: Breve descripción
-- 🔒 Funcionalidad 3: Breve descripción
-- 🌍 Funcionalidad 4: Breve descripción
-
-## 🛠️ Tecnologías
-
-Este proyecto está construido con:
-
-- [Lenguaje/Framework 1](https://link-al-lenguaje1.com)
-- [Lenguaje/Framework 2](https://link-al-lenguaje2.com)
-- [Base de Datos](https://link-a-la-bd.com)
-
-## 📚 Instalación
-
-Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/usuario/repo-nombre.git
-
-
-🚀 Uso
-
-Explica cómo se puede usar tu aplicación, incluyendo los comandos básicos o interacciones principales.
-Añade ejemplos de código o capturas de pantalla si es necesario.
-
-📞 Contacto
-Si tienes alguna pregunta o sugerencia, puedes contactarme en:
-
-Correo: tu.correo@example.com
-Twitter: @tuUsuario
-LinkedIn: tuNombre
