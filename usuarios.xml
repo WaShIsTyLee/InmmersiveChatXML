@@ -12,6 +12,28 @@
         </contactos>
     </user>
     <user>
+        <name>ejemplo2</name>
+        <email>ejemplo2</email>
+        <nickname>ejemplo2</nickname>
+        <password>ejemplo</password>
+        <contactos>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactos>
+    </user>
+    <user>
+        <name>maricarmen</name>
+        <email>mericarmen</email>
+        <nickname>maricarmen</nickname>
+        <password>ejemplo</password>
+        <contactos>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactos>
+    </user>
+    <user>
         <name>ejemplo</name>
         <email>ejemplo</email>
         <nickname>ejemplo</nickname>
@@ -26,16 +48,10 @@
             <name>ejemplo2</name>
             <nickname>ejemplo2</nickname>
         </contactos>
-    </user>
-    <user>
-        <name>ejemplo2</name>
-        <email>ejemplo2</email>
-        <nickname>ejemplo2</nickname>
-        <password>ejemplo</password>
         <contactos>
-            <email>ejemplo</email>
-            <name>ejemplo</name>
-            <nickname>ejemplo</nickname>
+            <email>mericarmen</email>
+            <name>maricarmen</name>
+            <nickname>maricarmen</nickname>
         </contactos>
     </user>
 </users>

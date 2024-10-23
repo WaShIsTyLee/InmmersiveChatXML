@@ -182,4 +182,74 @@
             <nickname>ejemplo1</nickname>
         </contactoReceptor>
     </message>
+    <message>
+        <fecha>2024-10-23T09:40:14.9109104</fecha>
+        <text>tupollaahi</text>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-23T09:40:31.7364502</fecha>
+        <text>asead</text>
+        <contactoEmisor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-23T09:42:44.6559444</fecha>
+        <text>hola maricarmen</text>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-23T09:43:33.2802009</fecha>
+        <text>hola ejemplo soy mc</text>
+        <contactoEmisor>
+            <email>mericarmen</email>
+            <name>maricarmen</name>
+            <nickname>maricarmen</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-23T09:44:53.503601</fecha>
+        <text>hcgdcd</text>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>mericarmen</email>
+            <name>maricarmen</name>
+            <nickname>maricarmen</nickname>
+        </contactoReceptor>
+    </message>
 </messages>

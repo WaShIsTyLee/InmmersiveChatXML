@@ -1,5 +1,6 @@
 package com.github.example.view;
 
+import com.github.example.App;
 import com.github.example.model.Entity.Contacto;
 import com.github.example.model.Entity.Message;
 import com.github.example.model.Entity.Sesion;
@@ -12,11 +13,18 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javax.xml.bind.JAXBException;
+import java.awt.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,8 +41,8 @@ public class MainPageController extends Controller implements Initializable {
     private ScrollPane scrollPaneMensajes;
     @FXML
     private VBox vBoxMensajes;
-
-
+    @FXML
+    private ImageView imagen;
     @FXML
     private VBox contactos;
     @FXML
@@ -267,9 +275,15 @@ public class MainPageController extends Controller implements Initializable {
         Contacto contactorReceptor = new Contacto(usuarioReceptor.getEmail(), usuarioReceptor.getName(), usuarioReceptor.getNickname());
         Message message = new Message(ahora, mensajeRecogido, contactoEmisor, contactorReceptor);
         mensajesRecogidos.add(message);
-        XMLMessage.saveMessages(mensajesRecogidos);  // Guardar la lista actualizada de mensajes
+        XMLMessage.saveMessages(mensajesRecogidos);
         mensajeTextField.clear();
         mostrarMensajes(usuarioReceptor);
+    }
+
+    @FXML
+    public void changeSceneToInicioSesion() throws Exception {
+        Sesion.getInstancia().logOut();
+        App.currentController.changeScene(Scenes.INICIOSESION, null);
     }
 
 }
