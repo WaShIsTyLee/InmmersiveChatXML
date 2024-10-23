@@ -25,3 +25,14 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/usuario/repo-nombre.git
+
+   🚀 Uso
+Explica cómo se puede usar tu aplicación, incluyendo los comandos básicos o interacciones principales.
+Añade ejemplos de código o capturas de pantalla si es necesario.
+
+📞 Contacto
+Si tienes alguna pregunta o sugerencia, puedes contactarme en:
+
+Correo: tu.correo@example.com
+Twitter: @tuUsuario
+LinkedIn: tuNombre
