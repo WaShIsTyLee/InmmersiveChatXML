@@ -1,8 +1,8 @@
-# [TaskFlow🚀](https://github.com/WaShIsTyLee/TaskFlow)
+# [InmersiveChat🚀](https://github.com/WaShIsTyLee/InmmersiveChatXML)
 
 ___
 
-_Es el proyecto de segunda evaluación realizador por [Washistylee](https://github.com/WaShIsTyLee), [Franfuu](https://github.com/Franfuu) y [elrisaslol](https://github.com/elrisaslol)._
+_Es el proyecto de primera evaluación realizador por [Washistylee](https://github.com/WaShIsTyLee) y [MariaPas235](https://github.com/MariaPas235) ._
 ## Descripción 📄
 
 ___
