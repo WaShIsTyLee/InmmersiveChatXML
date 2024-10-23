@@ -42,4 +42,32 @@
             <nickname>ejemplo2</nickname>
         </contactoReceptor>
     </message>
+    <message>
+        <fecha>2024-10-22T09:31:06.1517496</fecha>
+        <text>eeuqHJ AKJASJK HHAS</text>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-22T09:36:25.7636236</fecha>
+        <text>que dice franfuu</text>
+        <contactoEmisor>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo1</email>
+            <name>ejemplo1</name>
+            <nickname>ejemplo1</nickname>
+        </contactoReceptor>
+    </message>
 </messages>
