@@ -61,6 +61,7 @@ public class RegistroController extends Controller implements Initializable {
             boolean usuarioExistente = false;
             for (User user : todosUsuarios) {
                 if (nuevoUsuario.equals(user)) {
+                    user.setPassword(User.hashPassword(nuevoUsuario.getPassword()));
                     usuarioExistente = true;
                     break;
                 }
@@ -68,7 +69,6 @@ public class RegistroController extends Controller implements Initializable {
             if (usuarioExistente) {
                 System.out.println("El usuario ya está registrado.");
             } else {
-                nuevoUsuario.setPassword(User.hashPassword(nuevoUsuario.getPassword()));
                 XMLUser.agregarUsuario(nuevoUsuario);
                 changeSceneToInicioSesion();
             }

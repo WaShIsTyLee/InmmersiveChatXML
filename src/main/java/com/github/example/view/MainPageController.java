@@ -5,7 +5,6 @@ import com.github.example.model.Entity.Contacto;
 import com.github.example.model.Entity.Message;
 import com.github.example.model.Entity.Sesion;
 import com.github.example.model.Entity.User;
-import com.github.example.model.XML.MessageWrapper;
 import com.github.example.model.XML.XMLMessage;
 import com.github.example.model.XML.XMLUser;
 import javafx.fxml.FXML;
@@ -13,25 +12,23 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javax.xml.bind.JAXBException;
-import java.awt.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static com.github.example.model.XML.XMLMessage.archivoTxt;
+
 public class MainPageController extends Controller implements Initializable {
+    @FXML
+    Button buttonResumen;
 
     @FXML
     private SplitPane splitpane;
@@ -62,7 +59,6 @@ public class MainPageController extends Controller implements Initializable {
     private Button buttonAnadirMensaje;
 
     private String selectedNickname;
-
 
 
     @FXML
@@ -184,29 +180,26 @@ public class MainPageController extends Controller implements Initializable {
                 Label mensajeLabel = new Label(message.getText());
                 mensajeLabel.setStyle("-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
                 mensajeLabel.setWrapText(true);
-                mensajeLabel.setMaxWidth(300); // Limitar el ancho de los mensajes
+                mensajeLabel.setMaxWidth(300);
 
                 HBox hbox = new HBox();
                 hbox.setPadding(new Insets(5));
 
                 if (message.getContactoEmisor().getNickname().equals(Sesion.getInstancia().getUsuarioIniciado().getNickname())) {
                     mensajeLabel.setStyle("-fx-background-color: #B39DDB; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
-                    hbox.setAlignment(Pos.CENTER_RIGHT); // Alinear el mensaje a la derecha
+                    hbox.setAlignment(Pos.CENTER_RIGHT);
                     hbox.getChildren().add(mensajeLabel);
                 } else {
                     mensajeLabel.setStyle("-fx-background-color: #E0E0E0; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
-                    hbox.setAlignment(Pos.CENTER_LEFT); // Alinear el mensaje a la izquierda
+                    hbox.setAlignment(Pos.CENTER_LEFT);
                     hbox.getChildren().add(mensajeLabel);
                 }
-
                 vBoxMensajes.getChildren().add(hbox);
             }
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
-
-
 
 
     private User buscarUsuarioPorNickname(String nickname) throws Exception {
@@ -236,19 +229,6 @@ public class MainPageController extends Controller implements Initializable {
         }
         return mensajesFiltrados;
     }
-
-
-    public User recogerUsuarioPorNickname(String nickname) throws Exception {
-        List<User> todosUsuarios= XMLUser.obtenerUsuarios();
-        User usuario = null;
-        for (User user : todosUsuarios){
-            if (user.getNickname().equals(nickname)) {
-                usuario = user;
-            }
-        }
-        return usuario;
-    }
-
 
 
     public void guardarMensaje() throws Exception {
@@ -285,5 +265,33 @@ public class MainPageController extends Controller implements Initializable {
         Sesion.getInstancia().logOut();
         App.currentController.changeScene(Scenes.INICIOSESION, null);
     }
+
+    @FXML
+    public void txtMensajes() throws Exception {
+        String nickname = getselectedNickname();
+        User user = buscarUsuarioPorNickname(nickname);
+        List<Message> mensajesTxt = XMLMessage.recoverMessages();
+        List<Message> mensajesFiltrados = new ArrayList<>();
+
+        User usuarioIniciado = Sesion.getInstancia().getUsuarioIniciado();
+        String usuarioIniciadoNickname = usuarioIniciado.getNickname();
+
+
+        for (Message message : mensajesTxt) {
+            String emisorNickname = message.getContactoEmisor().getNickname();
+            String receptorNickname = message.getContactoReceptor().getNickname();
+
+            if ((emisorNickname.equals(user.getNickname()) && receptorNickname.equals(usuarioIniciadoNickname)) ||
+                    (receptorNickname.equals(user.getNickname()) && emisorNickname.equals(usuarioIniciadoNickname))) {
+                mensajesFiltrados.add(message);
+            }
+        }
+        if (!mensajesFiltrados.isEmpty()) {
+            XMLMessage.convertirXMLaTxt(archivoTxt, mensajesFiltrados);
+        } else {
+            System.out.println("No hay mensajes entre estos usuarios.");
+        }
+    }
+
 
 }

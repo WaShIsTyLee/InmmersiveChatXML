@@ -63,5 +63,6 @@
             <Image url="@IonLogInOutline.png" />
          </image>
       </ImageView>
+      <Button fx:id="buttonResumen" layoutX="510.0" layoutY="538.0" mnemonicParsing="false" onAction="#txtMensajes" text="Button" />
    </children>
 </AnchorPane>
