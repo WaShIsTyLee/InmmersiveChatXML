@@ -1,68 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <messages>
     <message>
-        <fecha>2024-10-24T09:06:15.2311065</fecha>
+        <fecha>2024-10-24T13:46:16.0090844</fecha>
         <text>hola</text>
         <contactoEmisor>
             <email>ejemplo</email>
             <name>ejemplo</name>
             <nickname>ejemplo</nickname>
-        </contactoEmisor>
-        <contactoReceptor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
-        </contactoReceptor>
-    </message>
-    <message>
-        <fecha>2024-10-24T09:06:18.7071519</fecha>
-        <text>eeee</text>
-        <contactoEmisor>
-            <email>ejemplo</email>
-            <name>ejemplo</name>
-            <nickname>ejemplo</nickname>
-        </contactoEmisor>
-        <contactoReceptor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
-        </contactoReceptor>
-    </message>
-    <message>
-        <fecha>2024-10-24T09:06:31.0662874</fecha>
-        <text>fefefe</text>
-        <contactoEmisor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
-        </contactoEmisor>
-        <contactoReceptor>
-            <email>ejemplo</email>
-            <name>ejemplo</name>
-            <nickname>ejemplo</nickname>
-        </contactoReceptor>
-    </message>
-    <message>
-        <fecha>2024-10-24T09:06:33.1627342</fecha>
-        <text>feefe</text>
-        <contactoEmisor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
-        </contactoEmisor>
-        <contactoReceptor>
-            <email>ejemplo</email>
-            <name>ejemplo</name>
-            <nickname>ejemplo</nickname>
-        </contactoReceptor>
-    </message>
-    <message>
-        <fecha>2024-10-24T09:07:01.9463723</fecha>
-        <text>hola ejemplo2</text>
-        <contactoEmisor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
         </contactoEmisor>
         <contactoReceptor>
             <email>ejemplo2</email>
@@ -71,49 +15,63 @@
         </contactoReceptor>
     </message>
     <message>
-        <fecha>2024-10-24T09:07:20.6896988</fecha>
-        <text>hola ejemplo1</text>
+        <fecha>2024-10-24T13:46:56.8694045</fecha>
+        <text>feo</text>
         <contactoEmisor>
             <email>ejemplo2</email>
             <name>ejemplo2</name>
             <nickname>ejemplo2</nickname>
         </contactoEmisor>
         <contactoReceptor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
-        </contactoReceptor>
-    </message>
-    <message>
-        <fecha>2024-10-24T09:34:25.4679458</fecha>
-        <text>hola ejemplo1 soy ejemplo</text>
-        <contactoEmisor>
             <email>ejemplo</email>
             <name>ejemplo</name>
             <nickname>ejemplo</nickname>
-        </contactoEmisor>
-        <contactoReceptor>
-            <email>ejemplo1</email>
-            <name>ejemplo1</name>
-            <nickname>ejemplo1</nickname>
         </contactoReceptor>
     </message>
     <message>
-        <fecha>2024-10-24T09:57:55.7949228</fecha>
-        <text>eee</text>
+        <fecha>2024-10-24T13:57:26.2115673</fecha>
+        <text>hols ejemplo2 soy ejemplo3</text>
         <contactoEmisor>
-            <email>ejemplo</email>
-            <name>ejemplo</name>
-            <nickname>ejemplo</nickname>
+            <email>ejemplo3</email>
+            <name>ejemplo3</name>
+            <nickname>ejemplo3</nickname>
         </contactoEmisor>
         <contactoReceptor>
-            <email>mericarmen</email>
-            <name>maricarmen</name>
-            <nickname>maricarmen</nickname>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
         </contactoReceptor>
     </message>
     <message>
-        <fecha>2024-10-24T10:27:29.4352634</fecha>
+        <fecha>2024-10-24T13:58:15.4205301</fecha>
+        <text>vale ejemplo3 ok</text>
+        <contactoEmisor>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo3</email>
+            <name>ejemplo3</name>
+            <nickname>ejemplo3</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-24T14:02:10.8236184</fecha>
+        <text>hols ejejmplo3</text>
+        <contactoEmisor>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
+        </contactoEmisor>
+        <contactoReceptor>
+            <email>ejemplo3</email>
+            <name>ejemplo3</name>
+            <nickname>ejemplo3</nickname>
+        </contactoReceptor>
+    </message>
+    <message>
+        <fecha>2024-10-24T14:02:53.7499027</fecha>
         <text>hola</text>
         <contactoEmisor>
             <email>ejemplo</email>
@@ -121,9 +79,9 @@
             <nickname>ejemplo</nickname>
         </contactoEmisor>
         <contactoReceptor>
-            <email>ejemploe</email>
-            <name>ejemploe</name>
-            <nickname>ejemploe</nickname>
+            <email>ejemplo3</email>
+            <name>ejemplo3</name>
+            <nickname>ejemplo3</nickname>
         </contactoReceptor>
     </message>
 </messages>

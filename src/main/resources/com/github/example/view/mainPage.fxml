@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -13,56 +14,73 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #B39DDB;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
    <children>
-      <SplitPane fx:id="splitpane" dividerPositions="0.21256684491978606" layoutX="51.0" layoutY="74.0" prefHeight="406.0" prefWidth="709.0" style="-fx-background-color: white;">
+      <SplitPane fx:id="splitpane" dividerPositions="0.21256684491978606" layoutX="97.0" layoutY="70.0" prefHeight="447.0" prefWidth="716.0" style="-fx-background-color: white;">
          <items>
-            <VBox fx:id="contactos" prefHeight="398.0" prefWidth="250.0" styleClass="black">
+            <VBox fx:id="contactos" prefHeight="466.0" prefWidth="148.0" styleClass="black">
                <children>
-                  <ListView fx:id="contactListView" prefHeight="398.0" prefWidth="176.0" />
-                  <TextField fx:id="textField" prefHeight="26.0" prefWidth="420.0" promptText="Nickname" />
+                  <ListView fx:id="contactListView" prefHeight="395.0" prefWidth="148.0" style="-fx-background-color: #9044b7;" />
+                  <TextField fx:id="textField" prefHeight="40.0" prefWidth="148.0" promptText="Nickname" />
                   <HBox prefHeight="26.0" prefWidth="196.0">
                      <children>
-                        <Button fx:id="buttonAnadirContacto" mnemonicParsing="false" onAction="#añadirContactos" prefHeight="26.0" prefWidth="125.0" text="Añadir Contacto" />
+                        <Button fx:id="buttonAnadirContacto" mnemonicParsing="false" onAction="#añadirContactos" prefHeight="40.0" prefWidth="148.0" style="-fx-background-color: #B39DDB;" text="Añadir Contacto">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </HBox>
                </children>
             </VBox>
 
-            <!-- Sección de Mensajes -->
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #9044b7;">
                <children>
-                  <!-- Nombre del Contacto Seleccionado -->
-                  <Text fx:id="textNombreContacto" strokeType="OUTSIDE" strokeWidth="0.0" text="NombreContacto" textAlignment="CENTER" wrappingWidth="466.9367561340332">
+                  <Text fx:id="textNombreContacto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NombreContacto" textAlignment="CENTER" wrappingWidth="555.3366889953613">
                      <font>
                         <Font name="Ink Free" size="25.0" />
                      </font>
                   </Text>
 
-                  <!-- ScrollPane para Mensajes -->
                   <ScrollPane fx:id="scrollPaneMensajes" fitToHeight="true" fitToWidth="true" prefHeight="370.0" prefWidth="468.0">
                      <content>
-                        <!-- VBox para contener los mensajes del usuario -->
-                        <VBox fx:id="vBoxMensajes" VBox.vgrow="ALWAYS" />
+                        <VBox fx:id="vBoxMensajes" prefHeight="373.0" prefWidth="557.0" VBox.vgrow="ALWAYS" />
                      </content>
                   </ScrollPane>
 
-                  <!-- Campo para Escribir Mensaje y Botón para Enviar -->
-                  <HBox prefHeight="24.0" prefWidth="555.0">
+                  <HBox prefHeight="39.0" prefWidth="594.0">
                      <children>
-                        <TextField fx:id="mensajeTextField" prefHeight="26.0" prefWidth="506.0" promptText="Escribe tu mensaje" />
-                        <Button fx:id="buttonAnadirMensaje" mnemonicParsing="false" onAction="#guardarMensaje" text="Enviar" />
+                        <TextField fx:id="mensajeTextField" prefHeight="76.0" prefWidth="472.0" promptText="Escribe tu mensaje">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor></TextField>
+                        <Button fx:id="buttonAnadirMensaje" mnemonicParsing="false" onAction="#guardarMensaje" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: #B39DDB;" text="Enviar">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </HBox>
                </children>
             </VBox>
          </items>
       </SplitPane>
-      <ImageView fx:id="imagen" fitHeight="85.0" fitWidth="88.0" layoutX="779.0" layoutY="14.0" onMouseClicked="#changeSceneToInicioSesion">
+
+      <ImageView fx:id="imagen" fitHeight="46.0" fitWidth="76.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#changeSceneToInicioSesion" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@IonLogInOutline.png" />
+            <Image url="@PepiconsPopLeaveCircle (2).png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Button fx:id="buttonResumen" layoutX="510.0" layoutY="538.0" mnemonicParsing="false" onAction="#txtMensajes" text="Button" />
+
+      <ImageView fx:id="buttonResumen" fitHeight="46.0" fitWidth="52.0" layoutX="828.0" layoutY="24.0" onMouseClicked="#txtMensajes" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@HugeiconsTxt02.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+
    </children>
 </AnchorPane>
