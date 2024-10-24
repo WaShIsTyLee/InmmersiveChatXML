@@ -1,0 +1,6 @@
+Resumen de la Conversación
+----------------------------
+Total de mensajes: 1
+Usuario con más mensajes: ejemplo
+Palabra más usada: hola
+----------------------------

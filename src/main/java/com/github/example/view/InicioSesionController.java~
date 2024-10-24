@@ -35,7 +35,7 @@ public class InicioSesionController extends Controller implements Initializable 
         String password = contraseña.getText();
         User auxUser = new User();
         auxUser.setNickname(nickname);
-        auxUser.setPassword(User.hashPassword(password));
+        auxUser.setPassword(password);
         User fullUser = verifyCredentials(auxUser);
         if (fullUser != null) {
             System.out.println("Credenciales correctas");
