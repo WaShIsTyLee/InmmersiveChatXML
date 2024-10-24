@@ -28,7 +28,7 @@ import static com.github.example.model.XML.XMLMessage.archivoTxt;
 
 public class MainPageController extends Controller implements Initializable {
     @FXML
-    Button buttonResumen;
+    ImageView imagenResumen;
 
     @FXML
     private SplitPane splitpane;
@@ -184,6 +184,7 @@ public class MainPageController extends Controller implements Initializable {
 
                 HBox hbox = new HBox();
                 hbox.setPadding(new Insets(5));
+
 
                 if (message.getContactoEmisor().getNickname().equals(Sesion.getInstancia().getUsuarioIniciado().getNickname())) {
                     mensajeLabel.setStyle("-fx-background-color: #B39DDB; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");

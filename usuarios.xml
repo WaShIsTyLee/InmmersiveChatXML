@@ -1,21 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
+        <name>ejemplo2</name>
+        <email>ejemplo2</email>
+        <nickname>ejemplo2</nickname>
+        <password>e1f9bece32ddf8071b8565af942fe1ba362691869a2b4a54b0eb9136b4e413c4</password>
+        <contactos>
+            <email>ejemplo</email>
+            <name>ejemplo</name>
+            <nickname>ejemplo</nickname>
+        </contactos>
+        <contactos>
+            <email>ejemplo3</email>
+            <name>ejemplo3</name>
+            <nickname>ejemplo3</nickname>
+        </contactos>
+    </user>
+    <user>
         <name>ejemplo</name>
         <email>ejemplo</email>
         <nickname>ejemplo</nickname>
         <password>fd984bad363e9a30021460091726467b65bb1e88c31752d93c68ade87e4946e4</password>
         <contactos>
-            <email>ejemploe</email>
-            <name>ejemploe</name>
-            <nickname>ejemploe</nickname>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
+        </contactos>
+        <contactos>
+            <email>ejemplo3</email>
+            <name>ejemplo3</name>
+            <nickname>ejemplo3</nickname>
         </contactos>
     </user>
     <user>
-        <name>ejemploe</name>
-        <email>ejemploe</email>
-        <nickname>ejemploe</nickname>
-        <password>5ba023a42c47c285bebcfbc0df408077b593866d4f8a18903f55a7b2164e163f</password>
+        <name>ejemplo3</name>
+        <email>ejemplo3</email>
+        <nickname>ejemplo3</nickname>
+        <password>fb774e170de861711d0e425d74a21be200ebbd5e20c681e280d7da7829851775</password>
+        <contactos>
+            <email>ejemplo2</email>
+            <name>ejemplo2</name>
+            <nickname>ejemplo2</nickname>
+        </contactos>
         <contactos>
             <email>ejemplo</email>
             <name>ejemplo</name>
