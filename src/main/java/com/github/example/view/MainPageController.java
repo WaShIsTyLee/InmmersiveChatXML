@@ -29,7 +29,6 @@ import static com.github.example.model.XML.XMLMessage.archivoTxt;
 public class MainPageController extends Controller implements Initializable {
     @FXML
     ImageView imagenResumen;
-
     @FXML
     private SplitPane splitpane;
     @FXML
@@ -94,16 +93,12 @@ public class MainPageController extends Controller implements Initializable {
 
     public void añadirContactos() throws Exception {
         User usuarioIniciado = Sesion.getInstancia().getUsuarioIniciado();
-        if (usuarioIniciado == null) {
-            System.out.println("No hay un usuario iniciado.");
-            return;
-        }
         Contacto contacto = validarContacto();
         if (usuarioIniciado.getContactos() == null) {
             usuarioIniciado.setContactos(new ArrayList<>());
         }
         if (contacto == null) {
-            System.out.println("El contacto no fue encontrado o es nulo");
+            AppController.showAlertForAddContact();
             return;
         }
         List<User> usuariosXML = XMLUser.obtenerUsuarios();
@@ -111,6 +106,12 @@ public class MainPageController extends Controller implements Initializable {
             if (user.equals(usuarioIniciado)) {
                 usuariosXML.remove(user);
                 List<Contacto> contactosUser = usuarioIniciado.getContactos();
+                for (Contacto c : contactosUser) {
+                    if (c.getNickname().equals(contacto.getNickname())) {
+                        AppController.showAlertForContactRepetido();
+                        return;
+                    }
+                }
                 contactosUser.add(contacto);
                 usuarioIniciado.setContactos(contactosUser);
                 usuariosXML.add(usuarioIniciado);
@@ -172,7 +173,6 @@ public class MainPageController extends Controller implements Initializable {
     private void mostrarMensajes(User user) {
         vBoxMensajes.getChildren().clear();
         Contacto contacto = new Contacto(user.getEmail(), user.getName(), user.getNickname());
-
         try {
             List<Message> mensajes = recogerMensajesdeUsuario(contacto);
 
@@ -181,11 +181,8 @@ public class MainPageController extends Controller implements Initializable {
                 mensajeLabel.setStyle("-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
                 mensajeLabel.setWrapText(true);
                 mensajeLabel.setMaxWidth(300);
-
                 HBox hbox = new HBox();
                 hbox.setPadding(new Insets(5));
-
-
                 if (message.getContactoEmisor().getNickname().equals(Sesion.getInstancia().getUsuarioIniciado().getNickname())) {
                     mensajeLabel.setStyle("-fx-background-color: #B39DDB; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
                     hbox.setAlignment(Pos.CENTER_RIGHT);
@@ -241,8 +238,12 @@ public class MainPageController extends Controller implements Initializable {
         List<Message> mensajesRecogidos = XMLMessage.recoverMessages();
         LocalDateTime ahora = LocalDateTime.now();
         User user = Sesion.getInstancia().getUsuarioIniciado();
-
         String nicknameReceptor = getselectedNickname();
+        if (nicknameReceptor == null || nicknameReceptor.isEmpty()) {
+            AppController.showAlertForContactSelected();
+            return;
+
+        }
         User usuarioReceptor = new User();
         List<User> todosUsuarios = XMLUser.obtenerUsuarios();
 

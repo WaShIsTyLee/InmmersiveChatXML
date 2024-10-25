@@ -31,6 +31,62 @@ public class AppController extends Controller implements Initializable {
         alertError.showAndWait();
     }
 
+    @FXML
+    public static void showAlertForContactSelected() {
+        alertError.setTitle("❌ Error al seleccionar contacto ❌");
+        alertError.setHeaderText(null);
+        alertError.setContentText("No has seleccionado ningún contacto.");
+        alertError.showAndWait();
+    }
+    @FXML
+    public static void showAlertForPassword() {
+        alertError.setTitle("❌ Error en el campo contraseña ❌");
+        alertError.getDialogPane().setPrefWidth(700);
+        alertError.getDialogPane().setPrefHeight(160);
+        alertError.setHeaderText(null);
+        alertError.setContentText("- La contraseña debe contener al menos 8 caracteres y debe incluir al menos una letra mayúscula, \n " +
+                "una letra minúscula, un número y un carácter especial.");
+        alertError.showAndWait();
+    }
+    @FXML
+    public static void showAlertForEmail() {
+        alertError.setTitle("❌ Error en el email ❌");
+        alertError.getDialogPane().setPrefWidth(700);
+        alertError.getDialogPane().setPrefHeight(160);
+        alertError.setHeaderText(null);
+        alertError.setContentText("- El correo electrónico debe ser una dirección válida de Gmail, Outlook o Hotmail. \n" +
+                "- El correo introducido ya existe, por favor elija otro.");
+        alertError.showAndWait();
+    }
+    @FXML
+    public static void showAlertForAddContact() {
+        alertError.setTitle("❌ Error al añadir contacto ❌");
+        alertError.getDialogPane().setPrefWidth(700);
+        alertError.getDialogPane().setPrefHeight(160);
+        alertError.setHeaderText(null);
+        alertError.setContentText("- Ese contacto no existe en nuestra base de datos, por favor elija otro.");
+        alertError.showAndWait();
+    }
+    @FXML
+    public static void showAlertForContactRepetido() {
+        alertError.setTitle("❌ Error al añadir contacto ❌");
+        alertError.getDialogPane().setPrefWidth(700);
+        alertError.getDialogPane().setPrefHeight(160);
+        alertError.setHeaderText(null);
+        alertError.setContentText("- Ese contacto ya existe en tu lista.");
+        alertError.showAndWait();
+    }
+    @FXML
+    public static void showAlertForNickname() {
+        alertError.setTitle("❌ Error al registrarse ❌");
+        alertError.setHeaderText(null);
+        alertError.getDialogPane().setPrefWidth(700);
+        alertError.getDialogPane().setPrefHeight(160);
+        alertError.setContentText("Por favor, revise la información proporcionada, y vuelva a intentarlo:\n\n" +
+                "- El nombre de usuario puede estar en uso, por favor elija otro.");
+        alertError.showAndWait();
+    }
+
 
     @Override
     public void onOpen(Object input) throws Exception {

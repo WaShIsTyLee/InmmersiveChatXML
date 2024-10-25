@@ -3,11 +3,12 @@ package com.github.example.view;
 import com.github.example.App;
 import com.github.example.model.Entity.User;
 import com.github.example.model.XML.XMLUser;
-import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,7 +43,15 @@ public class RegistroController extends Controller implements Initializable {
         }
         String nombreText = nombre.getText();
         String password = contrasena.getText();
+        if (!User.validatePassword(password)) {
+            AppController.showAlertForPassword();
+            password = "";
+        }
         String emailText = email.getText();
+        if (!User.validateEmail(emailText)) {
+            AppController.showAlertForEmail();
+            emailText= "";
+        }
         String nicknameText = nickname.getText();
         if (nombreText.isEmpty() || emailText.isEmpty() || nicknameText.isEmpty() || password.isEmpty()) {
             System.out.println("Error: Todos los campos son obligatorios.");
@@ -58,22 +67,30 @@ public class RegistroController extends Controller implements Initializable {
             XMLUser.agregarUsuario(nuevoUsuario);
             changeSceneToInicioSesion();
         } else {
-            boolean usuarioExistente = false;
+            boolean nicknameExistente = false;
+            boolean emailExistente = false;
             for (User user : todosUsuarios) {
-                if (nuevoUsuario.equals(user)) {
-                    usuarioExistente = true;
+                if (nuevoUsuario.getNickname().equals(user.getNickname())) {
+                    nicknameExistente = true;
+                }
+                if (nuevoUsuario.getEmail().equals(user.getEmail())) {
+                    emailExistente = true;
+                }
+                if (nicknameExistente || emailExistente) {
                     break;
                 }
             }
-            if (usuarioExistente) {
-                System.out.println("El usuario ya está registrado.");
+            if (nicknameExistente) {
+                AppController.showAlertForNickname();
+            } else if (emailExistente) {
+                AppController.showAlertForEmail();
             } else {
                 nuevoUsuario.setPassword(User.hashPassword(nuevoUsuario.getPassword()));
                 XMLUser.agregarUsuario(nuevoUsuario);
                 changeSceneToInicioSesion();
             }
         }
-    }
+}
 
     @Override
     public void onOpen(Object input) throws Exception {
