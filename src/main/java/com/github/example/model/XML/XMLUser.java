@@ -33,18 +33,6 @@ public class XMLUser {
         }
     }
 
-    public static List<Contacto> obtenerContactosDeTodosLosUsuarios() throws Exception {
-        List<User> usuarios = obtenerUsuarios();
-        List<Contacto> todosLosContactos = new ArrayList<>();
-        for (User user : usuarios) {
-            if (user.getContactos() != null) {
-                todosLosContactos.addAll(user.getContactos());
-            }
-        }
-        return todosLosContactos;
-    }
-
-
     public static List<Contacto> obtenerContactosPorUsuario(User nombreUsuario) throws Exception {
         List<User> usuarios = obtenerUsuarios();
         for (User user : usuarios) {

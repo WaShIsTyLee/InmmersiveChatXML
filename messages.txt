@@ -1,8 +1,0 @@
-Conversación entre ejemplo3 y ejemplo2:
-------------------------------------------------
-Fecha: 2024-10-24T13:57:26.211567300
-ejemplo3: hols ejemplo2 soy ejemplo3
--------------------------------
-Fecha: 2024-10-24T13:58:15.420530100
-ejemplo2: vale ejemplo3 ok
--------------------------------

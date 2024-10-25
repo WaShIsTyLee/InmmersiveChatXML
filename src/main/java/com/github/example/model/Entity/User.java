@@ -90,7 +90,7 @@ public class User  {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(nickname, user.nickname);
+        return Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getNickname(), user.getNickname());
     }
 
     @Override
@@ -121,4 +121,24 @@ public class User  {
             throw new RuntimeException("SHA-256 algorithm not found", e);
         }
     }
+    public static boolean validatePassword(String password) {
+        boolean result = false;
+        Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.#_()%?&])[A-Za-z\\d@$!.#_()%?&]{8,}$");
+        Matcher contrasenaMatcher = passwordPattern.matcher(password);
+        if (contrasenaMatcher.matches()) {
+            result = true;
+        }
+        return result;
+    }
+
+    public static boolean validateEmail(String mail) {
+        boolean result = false;
+        Pattern mailPattern = Pattern.compile("[A-Za-z0-9]+@+(gmail|outlook|hotmail)\\.(com|es)");
+        Matcher mailMatcher = mailPattern.matcher(mail);
+        if (mailMatcher.matches()) {
+            result = true;
+        }
+        return result;
+    }
+
 }
