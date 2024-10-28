@@ -5,37 +5,36 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @XmlRootElement(name = "message")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Message {
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class) // Adaptador para LocalDateTime
-    @XmlElement    public LocalDateTime fecha;
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    @XmlElement
+    public LocalDateTime date;
     @XmlElement
     public String text;
     @XmlElement
-    public Contacto contactoEmisor;
+    public Contact senderContact;
     @XmlElement
-    public Contacto contactoReceptor;
+    public Contact receiverContact;
 
-    public Message(LocalDateTime fecha, String text, Contacto contactoEmisor, Contacto contactoReceptor) {
-        this.fecha = fecha;
+    public Message(LocalDateTime date, String text, Contact senderContact, Contact receiverContact) {
+        this.date = date;
         this.text = text;
-        this.contactoEmisor = contactoEmisor;
-        this.contactoReceptor = contactoReceptor;
+        this.senderContact = senderContact;
+        this.receiverContact = receiverContact;
     }
 
     public Message() {}
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public String getText() {
@@ -46,29 +45,29 @@ public class Message {
         this.text = text;
     }
 
-    public Contacto getContactoEmisor() {
-        return contactoEmisor;
+    public Contact getSenderContact() {
+        return senderContact;
     }
 
-    public void setContactoEmisor(Contacto contactoEmisor) {
-        this.contactoEmisor = contactoEmisor;
+    public void setSenderContact(Contact senderContact) {
+        this.senderContact = senderContact;
     }
 
-    public Contacto getContactoReceptor() {
-        return contactoReceptor;
+    public Contact getReceiverContact() {
+        return receiverContact;
     }
 
-    public void setContactoReceptor(Contacto contactoReceptor) {
-        this.contactoReceptor = contactoReceptor;
+    public void setReceiverContact(Contact receiverContact) {
+        this.receiverContact = receiverContact;
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "fecha=" + fecha +
+                "date=" + date +
                 ", text='" + text + '\'' +
-                ", contactoEmisor=" + contactoEmisor +
-                ", contactoReceptor=" + contactoReceptor +
+                ", senderContact=" + senderContact +
+                ", receiverContact=" + receiverContact +
                 '}';
     }
 }

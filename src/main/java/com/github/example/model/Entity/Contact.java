@@ -4,18 +4,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Contacto {
+public class Contact {
 
     private String email;
     private String name;
     private String nickname;
 
-    // Constructor vacío
-    public Contacto() {
+
+    public Contact() {
     }
 
-    // Constructor con parámetros
-    public Contacto(String email, String name, String nickname) {
+
+    public Contact(String email, String name, String nickname) {
         this.email = email;
         this.name = name;
         this.nickname = nickname;

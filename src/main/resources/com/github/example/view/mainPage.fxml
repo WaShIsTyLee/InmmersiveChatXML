@@ -14,17 +14,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #B39DDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #B39DDB;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.example.view.MainPageController">
    <children>
       <SplitPane fx:id="splitpane" dividerPositions="0.21256684491978606" layoutX="60.0" layoutY="97.0" prefHeight="464.0" prefWidth="716.0">
          <items>
-            <VBox fx:id="contactos" prefHeight="466.0" prefWidth="148.0" styleClass="black">
+            <VBox fx:id="contacts" prefHeight="466.0" prefWidth="148.0" styleClass="black">
                <children>
                   <ListView fx:id="contactListView" prefHeight="395.0" prefWidth="148.0" style="-fx-background-color: #9044b7;" />
                   <TextField fx:id="textField" prefHeight="40.0" prefWidth="148.0" promptText="Nickname" />
                   <HBox prefHeight="26.0" prefWidth="196.0">
                      <children>
-                        <Button fx:id="buttonAnadirContacto" mnemonicParsing="false" onAction="#añadirContactos" prefHeight="40.0" prefWidth="148.0" style="-fx-background-color: #B39DDB;" text="Añadir Contacto">
+                        <Button fx:id="buttonAddContact" mnemonicParsing="false" onAction="#addContacts" prefHeight="40.0" prefWidth="148.0" style="-fx-background-color: #B39DDB;" text="Añadir Contacto">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -36,26 +36,26 @@
             <VBox prefHeight="200.0" prefWidth="0.0" style="-fx-background-color: #9044b7;">
                <children>
                   <VBox prefHeight="8.0" prefWidth="556.0" />
-                  <Text fx:id="textNombreContacto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NombreContacto" textAlignment="CENTER" wrappingWidth="555.3366889953613">
+                  <Text fx:id="textNameContact" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NombreContacto" textAlignment="CENTER" wrappingWidth="555.3366889953613">
                      <font>
                         <Font name="Ink Free" size="25.0" />
                      </font>
                   </Text>
                   <VBox prefHeight="18.0" prefWidth="559.0" />
 
-                  <ScrollPane fx:id="scrollPaneMensajes" fitToHeight="true" fitToWidth="true" prefHeight="370.0" prefWidth="468.0">
+                  <ScrollPane fx:id="scrollPaneMessages" fitToHeight="true" fitToWidth="true" prefHeight="370.0" prefWidth="468.0">
                      <content>
-                        <VBox fx:id="vBoxMensajes" prefHeight="373.0" prefWidth="557.0" VBox.vgrow="ALWAYS" />
+                        <VBox fx:id="vBoxMessages" prefHeight="373.0" prefWidth="557.0" VBox.vgrow="ALWAYS" />
                      </content>
                   </ScrollPane>
 
                   <HBox prefHeight="51.0" prefWidth="552.0">
                      <children>
-                        <TextField fx:id="mensajeTextField" prefHeight="44.0" prefWidth="465.0" promptText="Escribe tu mensaje">
+                        <TextField fx:id="messageTextField" prefHeight="44.0" prefWidth="465.0" promptText="Escribe tu mensaje">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor></TextField>
-                        <Button fx:id="buttonAnadirMensaje" mnemonicParsing="false" onAction="#guardarMensaje" prefHeight="43.0" prefWidth="98.0" style="-fx-background-color: #B39DDB;" text="Enviar">
+                        <Button fx:id="buttonAddMessage" mnemonicParsing="false" onAction="#saveMessage" prefHeight="43.0" prefWidth="98.0" style="-fx-background-color: #B39DDB;" text="Enviar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -66,7 +66,7 @@
          </items>
       </SplitPane>
 
-      <ImageView fx:id="imagen" fitHeight="46.0" fitWidth="76.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#changeSceneToInicioSesion" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="46.0" fitWidth="76.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#changeSceneToInicioSesion" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@PepiconsPopLeaveCircle (2).png" />
          </image>
@@ -75,7 +75,7 @@
          </cursor>
       </ImageView>
 
-      <ImageView fx:id="buttonResumen" fitHeight="46.0" fitWidth="52.0" layoutX="840.0" layoutY="14.0" onMouseClicked="#txtMensajes" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="summaryImage" fitHeight="46.0" fitWidth="52.0" layoutX="840.0" layoutY="14.0" onMouseClicked="#txtMessages" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@HugeiconsTxt02.png" />
          </image>

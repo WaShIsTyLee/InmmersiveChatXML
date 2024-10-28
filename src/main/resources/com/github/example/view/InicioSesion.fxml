@@ -17,15 +17,15 @@
             <Image url="@LogoCircularInmmersiveChat.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nombreUsuario" layoutX="349.0" layoutY="309.0" prefHeight="42.0" prefWidth="196.0" promptText="Nickname" text="ejemplo">
+      <TextField fx:id="UserName" layoutX="349.0" layoutY="309.0" prefHeight="42.0" prefWidth="196.0" promptText="Nickname">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <PasswordField fx:id="contraseña" layoutX="349.0" layoutY="377.0" prefHeight="42.0" prefWidth="196.0" promptText="Contraseña" text="ejemplo">
+      <PasswordField fx:id="password" layoutX="349.0" layoutY="377.0" prefHeight="42.0" prefWidth="196.0" promptText="Contraseña">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Button fx:id="buttonIniciarSesion" layoutX="395.0" layoutY="441.0" mnemonicParsing="false" onAction="#takeValuesLogin" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #9044b7;" text="Iniciar Sesion" textFill="WHITE">
+      <Button fx:id="buttonLogIn" layoutX="395.0" layoutY="441.0" mnemonicParsing="false" onAction="#takeValuesLogin" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #9044b7;" text="Iniciar Sesion" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

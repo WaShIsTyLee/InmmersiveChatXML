@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users>
+    <user>
+        <name>hugo</name>
+        <email>hugo@gmail.com</email>
+        <nickname>hugo</nickname>
+        <password>145b28d9e574ea9b4ac8e7cb51ca12f7a5e1f0189ef17644d9c5e604c94cc582</password>
+        <contacts>
+            <email>alonso@gmail.com</email>
+            <name>alonso</name>
+            <nickname>alonso</nickname>
+        </contacts>
+    </user>
+    <user>
+        <name>alonso</name>
+        <email>alonso@gmail.com</email>
+        <nickname>alonso</nickname>
+        <password>145b28d9e574ea9b4ac8e7cb51ca12f7a5e1f0189ef17644d9c5e604c94cc582</password>
+        <contacts>
+            <email>hugo@gmail.com</email>
+            <name>hugo</name>
+            <nickname>hugo</nickname>
+        </contacts>
+    </user>
+</users>

@@ -1,7 +1,7 @@
 package com.github.example.view;
 
 import com.github.example.App;
-import com.github.example.model.Entity.Contacto;
+import com.github.example.model.Entity.Contact;
 import com.github.example.model.Entity.Message;
 import com.github.example.model.Entity.Sesion;
 import com.github.example.model.Entity.User;
@@ -24,64 +24,76 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.github.example.model.XML.XMLMessage.archivoTxt;
+import static com.github.example.model.XML.XMLMessage.txtFile;
 
 public class MainPageController extends Controller implements Initializable {
     @FXML
-    ImageView imagenResumen;
+    ImageView summaryImage;
     @FXML
     private SplitPane splitpane;
     @FXML
-    Text textNombreContacto;
+    Text textNameContact;
     @FXML
-    private ScrollPane scrollPaneMensajes;
+    private ScrollPane scrollPaneMessages;
     @FXML
-    private VBox vBoxMensajes;
+    private VBox vBoxMessages;
     @FXML
-    private ImageView imagen;
+    private ImageView image;
     @FXML
-    private VBox contactos;
+    private VBox contacts;
     @FXML
-    private VBox mensajes;
+    private VBox messages;
     @FXML
-    private Button buttonAnadirContacto;
+    private Button buttonAddContact;
     @FXML
     private TextField textField;
 
     @FXML
-    private ListView<Contacto> contactListView;
+    private ListView<Contact> contactListView;
 
     @FXML
-    TextField mensajeTextField;
+    TextField messageTextField;
 
     @FXML
-    private Button buttonAnadirMensaje;
+    private Button buttonAddMessage;
 
     private String selectedNickname;
 
 
     @FXML
-    public void obtenerContactos(User usuario) throws Exception {
-        if (usuario.getContactos() == null) {
-            usuario.setContactos(new ArrayList<>());
+    /**
+     * Retrieves and displays the contacts for the specified user.
+     *
+     * @param user The user for whom to retrieve contacts.
+     * @throws Exception If an error occurs while retrieving contacts or updating the UI.
+     */
+    public void getContacts(User user) throws Exception {
+        if (user.getContacts() == null) {
+            user.setContacts(new ArrayList<>());
         }
         contactListView.getItems().clear();
-        List<Contacto> contactos = XMLUser.obtenerContactosPorUsuario(usuario);
-        if (contactos != null && !contactos.isEmpty()) {
-            contactListView.getItems().addAll(contactos);
+        List<Contact> contacts = XMLUser.getContactsByUser(user);
+        if (contacts != null && !contacts.isEmpty()) {
+            contactListView.getItems().addAll(contacts);
         } else {
             System.out.println("No hay contactos disponibles.");
         }
     }
 
-    public Contacto validarContacto() throws Exception {
-        Contacto aux = null;
+    /**
+     * Validates and retrieves a contact based on the nickname entered in the text field.
+     *
+     * @return A Contacto object if a matching user is found, or null if no match is found.
+     * @throws Exception If an error occurs while retrieving users.
+     */
+    public Contact verifyContact() throws Exception {
+        Contact aux = null;
         String nickname = textField.getText();
-        List<User> usuarios = XMLUser.obtenerUsuarios();
-        for (User user : usuarios) {
+        List<User> users = XMLUser.getUsersFromXml();
+        for (User user : users) {
             if (user.getNickname().equals(nickname)) {
                 System.out.println("Contacto encontrado: " + user.getNickname());
-                aux = new Contacto();
+                aux = new Contact();
                 aux.setEmail(user.getEmail());
                 aux.setName(user.getName());
                 aux.setNickname(user.getNickname());
@@ -91,32 +103,37 @@ public class MainPageController extends Controller implements Initializable {
         return aux;
     }
 
-    public void añadirContactos() throws Exception {
-        User usuarioIniciado = Sesion.getInstancia().getUsuarioIniciado();
-        Contacto contacto = validarContacto();
-        if (usuarioIniciado.getContactos() == null) {
-            usuarioIniciado.setContactos(new ArrayList<>());
+    /**
+     * Adds a new contact to the currently logged-in user's contact list.
+     *
+     * @throws Exception If an error occurs while adding the contact or retrieving user data.
+     */
+    public void addContacts() throws Exception {
+        User userLoged = Sesion.getInstancia().getUserLoged();
+        Contact contact = verifyContact();
+        if (userLoged.getContacts() == null) {
+            userLoged.setContacts(new ArrayList<>());
         }
-        if (contacto == null) {
+        if (contact == null) {
             AppController.showAlertForAddContact();
             return;
         }
-        List<User> usuariosXML = XMLUser.obtenerUsuarios();
-        for (User user : usuariosXML) {
-            if (user.equals(usuarioIniciado)) {
-                usuariosXML.remove(user);
-                List<Contacto> contactosUser = usuarioIniciado.getContactos();
-                for (Contacto c : contactosUser) {
-                    if (c.getNickname().equals(contacto.getNickname())) {
+        List<User> usersXML = XMLUser.getUsersFromXml();
+        for (User user : usersXML) {
+            if (user.equals(userLoged)) {
+                usersXML.remove(user);
+                List<Contact> contactsUser = userLoged.getContacts();
+                for (Contact c : contactsUser) {
+                    if (c.getNickname().equals(contact.getNickname())) {
                         AppController.showAlertForContactRepetido();
                         return;
                     }
                 }
-                contactosUser.add(contacto);
-                usuarioIniciado.setContactos(contactosUser);
-                usuariosXML.add(usuarioIniciado);
-                XMLUser.guardarUsuarios(usuariosXML);
-                obtenerContactos(usuarioIniciado);
+                contactsUser.add(contact);
+                userLoged.setContacts(contactsUser);
+                usersXML.add(userLoged);
+                XMLUser.saveUsersInXML(usersXML);
+                getContacts(userLoged);
                 break;
             }
         }
@@ -124,38 +141,45 @@ public class MainPageController extends Controller implements Initializable {
 
     @Override
     public void onOpen(Object input) throws Exception {
-        User usuario = Sesion.getInstancia().getUsuarioIniciado();
-        obtenerContactos(usuario);
+        User usuario = Sesion.getInstancia().getUserLoged();
+        getContacts(usuario);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configurarListView();
-        agregarListenerSeleccion();
+        configListView();
+        addListenerSelection();
     }
 
-    private void configurarListView() {
-        contactListView.setCellFactory(param -> new ListCell<Contacto>() {
+    /**
+     * Configures the ListView to display contacts.
+     * It sets a custom cell factory to define how each item (contact) is displayed.
+     */
+    private void configListView() {
+        contactListView.setCellFactory(param -> new ListCell<Contact>() {
             @Override
-            protected void updateItem(Contacto item, boolean empty) {
+            protected void updateItem(Contact item, boolean empty) {
                 super.updateItem(item, empty);
                 setText(empty || item == null ? null : item.getNickname());
             }
         });
     }
-
-    private void agregarListenerSeleccion() {
+    /**
+     * Adds a listener to the contact list view to handle selection events.
+     * When a contact is selected, it updates the selected nickname and displays the corresponding user's messages.
+     */
+    private void addListenerSelection() {
         contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 selectedNickname = newValue.getNickname();
-                textNombreContacto.setText(selectedNickname);
+                textNameContact.setText(selectedNickname);
                 System.out.println("Contacto seleccionado: " + newValue.getNickname());
                 User user = null;
                 try {
-                    user = buscarUsuarioPorNickname(newValue.getNickname());
+                    user = searchUserByNickname(newValue.getNickname());
                     if (user != null) {
                         System.out.println("Usuario encontrado: " + user.toString());
-                        mostrarMensajes(user);
+                        showMessages(user);
                     } else {
                         System.out.println("Usuario no encontrado.");
                     }
@@ -169,41 +193,52 @@ public class MainPageController extends Controller implements Initializable {
     public String getselectedNickname() {
         return selectedNickname;
     }
-
-    private void mostrarMensajes(User user) {
-        vBoxMensajes.getChildren().clear();
-        Contacto contacto = new Contacto(user.getEmail(), user.getName(), user.getNickname());
+    /**
+     * Displays the messages exchanged with a specific user.
+     * It clears the current message view and retrieves messages to show them in a chat format.
+     *
+     * @param user The user whose messages will be displayed.
+     */
+    private void showMessages(User user) {
+        vBoxMessages.getChildren().clear();
+        Contact contact = new Contact(user.getEmail(), user.getName(), user.getNickname());
         try {
-            List<Message> mensajes = recogerMensajesdeUsuario(contacto);
+            List<Message> messages = getMessagesOfUser(contact);
 
-            for (Message message : mensajes) {
-                Label mensajeLabel = new Label(message.getText());
-                mensajeLabel.setStyle("-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
-                mensajeLabel.setWrapText(true);
-                mensajeLabel.setMaxWidth(300);
+            for (Message message : messages) {
+                Label messageLabel = new Label(message.getText());
+                messageLabel.setStyle("-fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
+                messageLabel.setWrapText(true);
+                messageLabel.setMaxWidth(300);
                 HBox hbox = new HBox();
                 hbox.setPadding(new Insets(5));
-                if (message.getContactoEmisor().getNickname().equals(Sesion.getInstancia().getUsuarioIniciado().getNickname())) {
-                    mensajeLabel.setStyle("-fx-background-color: #B39DDB; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
+                if (message.getSenderContact().getNickname().equals(Sesion.getInstancia().getUserLoged().getNickname())) {
+                    messageLabel.setStyle("-fx-background-color: #B39DDB; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
                     hbox.setAlignment(Pos.CENTER_RIGHT);
-                    hbox.getChildren().add(mensajeLabel);
+                    hbox.getChildren().add(messageLabel);
                 } else {
-                    mensajeLabel.setStyle("-fx-background-color: #E0E0E0; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
+                    messageLabel.setStyle("-fx-background-color: #E0E0E0; -fx-padding: 10; -fx-background-radius: 10; -fx-border-radius: 10;");
                     hbox.setAlignment(Pos.CENTER_LEFT);
-                    hbox.getChildren().add(mensajeLabel);
+                    hbox.getChildren().add(messageLabel);
                 }
-                vBoxMensajes.getChildren().add(hbox);
+                vBoxMessages.getChildren().add(hbox);
             }
         } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
-
-    private User buscarUsuarioPorNickname(String nickname) throws Exception {
-        List<User> listaUsuarios = XMLUser.obtenerUsuarios();
+    /**
+     * Searches for a user by their nickname in the list of users.
+     *
+     * @param nickname The nickname of the user to search for.
+     * @return The User object if found, or a new User object if not found.
+     * @throws Exception if an error occurs while retrieving the user list.
+     */
+    private User searchUserByNickname(String nickname) throws Exception {
+        List<User> usersList = XMLUser.getUsersFromXml();
         User user = new User();
-        for (User users : listaUsuarios) {
+        for (User users : usersList) {
             if (users.getNickname().equals(nickname)) {
                 user = users;
             }
@@ -211,55 +246,66 @@ public class MainPageController extends Controller implements Initializable {
         return user;
     }
 
-    private List<Message> recogerMensajesdeUsuario(Contacto contacto) throws JAXBException {
-        List<Message> mensajes = XMLMessage.recoverMessages();
-        List<Message> mensajesFiltrados = new ArrayList<>();
-        User usuarioIniciado = Sesion.getInstancia().getUsuarioIniciado();
+    /**
+     * Recovers messages exchanged between the currently logged-in user and a specified contact.
+     *
+     * @param contact The contact whose messages with the logged-in user are to be retrieved.
+     * @return A list of messages exchanged between the logged-in user and the specified contact.
+     * @throws JAXBException if an error occurs while retrieving messages from the XML.
+     */
+    private List<Message> getMessagesOfUser(Contact contact) throws JAXBException {
+        List<Message> messages = XMLMessage.recoverMessages();
+        List<Message> filterMessages = new ArrayList<>();
+        User userLoged = Sesion.getInstancia().getUserLoged();
 
-        for (Message message : mensajes) {
-            if ((message.getContactoEmisor().getNickname().equals(usuarioIniciado.getNickname()) &&
-                    message.getContactoReceptor().getNickname().equals(contacto.getNickname())) ||
+        for (Message message : messages) {
+            if ((message.getSenderContact().getNickname().equals(userLoged.getNickname()) &&
+                    message.getReceiverContact().getNickname().equals(contact.getNickname())) ||
 
-                    (message.getContactoEmisor().getNickname().equals(contacto.getNickname()) &&
-                            message.getContactoReceptor().getNickname().equals(usuarioIniciado.getNickname()))) {
-                mensajesFiltrados.add(message);
+                    (message.getSenderContact().getNickname().equals(contact.getNickname()) &&
+                            message.getReceiverContact().getNickname().equals(userLoged.getNickname()))) {
+                filterMessages.add(message);
             }
         }
-        return mensajesFiltrados;
+        return filterMessages;
     }
 
-
-    public void guardarMensaje() throws Exception {
-        String mensajeRecogido = mensajeTextField.getText();
-        if (mensajeRecogido == null || mensajeRecogido.trim().isEmpty()) {
+    /**
+     * Saves a message sent by the currently connected user and stores it in the system.
+     *
+     * @throws Exception if an error occurs while retrieving or saving messages.
+     */
+    public void saveMessage() throws Exception {
+        String getMessage = messageTextField.getText();
+        if (getMessage == null || getMessage.trim().isEmpty()) {
             return;
         }
 
-        List<Message> mensajesRecogidos = XMLMessage.recoverMessages();
-        LocalDateTime ahora = LocalDateTime.now();
-        User user = Sesion.getInstancia().getUsuarioIniciado();
+        List<Message> getMessageList = XMLMessage.recoverMessages();
+        LocalDateTime now = LocalDateTime.now();
+        User user = Sesion.getInstancia().getUserLoged();
         String nicknameReceptor = getselectedNickname();
         if (nicknameReceptor == null || nicknameReceptor.isEmpty()) {
             AppController.showAlertForContactSelected();
             return;
 
         }
-        User usuarioReceptor = new User();
-        List<User> todosUsuarios = XMLUser.obtenerUsuarios();
+        User userReceiver = new User();
+        List<User> allUsers = XMLUser.getUsersFromXml();
 
-        for (User user2 : todosUsuarios) {
+        for (User user2 : allUsers) {
             if (user2.getNickname().equals(nicknameReceptor)) {
-                usuarioReceptor = user2;
+                userReceiver = user2;
                 break;
             }
         }
-        Contacto contactoEmisor = new Contacto(user.getEmail(), user.getName(), user.getNickname());
-        Contacto contactorReceptor = new Contacto(usuarioReceptor.getEmail(), usuarioReceptor.getName(), usuarioReceptor.getNickname());
-        Message message = new Message(ahora, mensajeRecogido, contactoEmisor, contactorReceptor);
-        mensajesRecogidos.add(message);
-        XMLMessage.saveMessages(mensajesRecogidos);
-        mensajeTextField.clear();
-        mostrarMensajes(usuarioReceptor);
+        Contact contactSender = new Contact(user.getEmail(), user.getName(), user.getNickname());
+        Contact contactorReceiver = new Contact(userReceiver.getEmail(), userReceiver.getName(), userReceiver.getNickname());
+        Message message = new Message(now, getMessage, contactSender, contactorReceiver);
+        getMessageList.add(message);
+        XMLMessage.saveMessages(getMessageList);
+        messageTextField.clear();
+        showMessages(userReceiver);
     }
 
     @FXML
@@ -269,27 +315,32 @@ public class MainPageController extends Controller implements Initializable {
     }
 
     @FXML
-    public void txtMensajes() throws Exception {
+    /**
+     * Exports the messages between the currently connected user and a selected contact to a text file.
+     *
+     * @throws Exception if an error occurs while retrieving messages or saving the text file.
+     */
+    public void txtMessages() throws Exception {
         String nickname = getselectedNickname();
-        User user = buscarUsuarioPorNickname(nickname);
-        List<Message> mensajesTxt = XMLMessage.recoverMessages();
-        List<Message> mensajesFiltrados = new ArrayList<>();
+        User user = searchUserByNickname(nickname);
+        List<Message> messagesTxt = XMLMessage.recoverMessages();
+        List<Message> messagesFilter = new ArrayList<>();
 
-        User usuarioIniciado = Sesion.getInstancia().getUsuarioIniciado();
-        String usuarioIniciadoNickname = usuarioIniciado.getNickname();
+        User userLoged = Sesion.getInstancia().getUserLoged();
+        String userLogedNickname = userLoged.getNickname();
 
 
-        for (Message message : mensajesTxt) {
-            String emisorNickname = message.getContactoEmisor().getNickname();
-            String receptorNickname = message.getContactoReceptor().getNickname();
+        for (Message message : messagesTxt) {
+            String SenderNickname = message.getSenderContact().getNickname();
+            String receiverNickname = message.getReceiverContact().getNickname();
 
-            if ((emisorNickname.equals(user.getNickname()) && receptorNickname.equals(usuarioIniciadoNickname)) ||
-                    (receptorNickname.equals(user.getNickname()) && emisorNickname.equals(usuarioIniciadoNickname))) {
-                mensajesFiltrados.add(message);
+            if ((SenderNickname.equals(user.getNickname()) && receiverNickname.equals(userLogedNickname)) ||
+                    (receiverNickname.equals(user.getNickname()) && SenderNickname.equals(userLogedNickname))) {
+                messagesFilter.add(message);
             }
         }
-        if (!mensajesFiltrados.isEmpty()) {
-            XMLMessage.convertirXMLaTxt(archivoTxt, mensajesFiltrados);
+        if (!messagesFilter.isEmpty()) {
+            XMLMessage.convertXMLToTXT(txtFile, messagesFilter);
         } else {
             System.out.println("No hay mensajes entre estos usuarios.");
         }

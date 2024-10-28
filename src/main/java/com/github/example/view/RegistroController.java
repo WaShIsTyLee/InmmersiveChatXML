@@ -16,33 +16,46 @@ import java.util.ResourceBundle;
 public class RegistroController extends Controller implements Initializable {
 
     @FXML
-    TextField nombre;
+    TextField name;
 
     @FXML
     TextField nickname;
     @FXML
     TextField email;
     @FXML
-    PasswordField contrasena;
+    PasswordField password;
     @FXML
-    Button registrar;
+    Button register;
 
     @FXML
+    /**
+     * Obtains and validates the registration values for a new user.
+     *
+     * @return User object of the new user if all fields are valid, or null if there are errors.
+     * @throws NullPointerException if any input field is not initialized.
+     */
     private User takeValuesRegister() throws Exception {
-        User nuevoUsuario = getValuesFromRegister();
-        if (nuevoUsuario == null) {
+        User newUser = getValuesFromRegister();
+        if (newUser == null) {
             return null;
         }
-        registerUser(nuevoUsuario);
-        return nuevoUsuario;
+        registerUser(newUser);
+        return newUser;
     }
 
+    /**
+     * Retrieves user input values from the registration form fields, validates them,
+     * and returns a new User instance if all fields are correctly filled and validated.
+     *
+     * @return a User instance with the provided registration data, or null if any field is invalid.
+     * @throws NullPointerException if any of the form fields (nombre, contrasena, email, nickname) are not initialized.
+     */
     private User getValuesFromRegister() {
-        if (nombre == null || contrasena == null || email == null || nickname == null) {
+        if (name == null || password == null || email == null || nickname == null) {
             throw new NullPointerException("Campos no inicializados");
         }
-        String nombreText = nombre.getText();
-        String password = contrasena.getText();
+        String nameText = name.getText();
+        String password = this.password.getText();
         if (!User.validatePassword(password)) {
             AppController.showAlertForPassword();
             password = "";
@@ -53,40 +66,47 @@ public class RegistroController extends Controller implements Initializable {
             emailText= "";
         }
         String nicknameText = nickname.getText();
-        if (nombreText.isEmpty() || emailText.isEmpty() || nicknameText.isEmpty() || password.isEmpty()) {
+        if (nameText.isEmpty() || emailText.isEmpty() || nicknameText.isEmpty() || password.isEmpty()) {
             System.out.println("Error: Todos los campos son obligatorios.");
             return null;
         }
-        return new User(nombreText, emailText, nicknameText, password);
+        return new User(nameText, emailText, nicknameText, password);
     }
-
-    private void registerUser(User nuevoUsuario) throws Exception {
-        List<User> todosUsuarios = XMLUser.obtenerUsuarios();
-        if (todosUsuarios.isEmpty()) {
-            nuevoUsuario.setPassword(User.hashPassword(nuevoUsuario.getPassword()));
-            XMLUser.agregarUsuario(nuevoUsuario);
+    /**
+     * Registers a new user by verifying if the nickname and email are unique among all users.
+     * If valid, the user is added to the system with a hashed password, and the scene changes to the login screen.
+     * Alerts are displayed if the nickname or email is already taken.
+     *
+     * @param newUser the User instance containing the new user’s registration data
+     * @throws Exception if there is an error obtaining or saving user data
+     */
+    private void registerUser(User newUser) throws Exception {
+        List<User> allUsers = XMLUser.getUsersFromXml();
+        if (allUsers.isEmpty()) {
+            newUser.setPassword(User.hashPassword(newUser.getPassword()));
+            XMLUser.addUserXML(newUser);
             changeSceneToInicioSesion();
         } else {
-            boolean nicknameExistente = false;
-            boolean emailExistente = false;
-            for (User user : todosUsuarios) {
-                if (nuevoUsuario.getNickname().equals(user.getNickname())) {
-                    nicknameExistente = true;
+            boolean ExistNickname = false;
+            boolean ExistEmail = false;
+            for (User user : allUsers) {
+                if (newUser.getNickname().equals(user.getNickname())) {
+                    ExistNickname = true;
                 }
-                if (nuevoUsuario.getEmail().equals(user.getEmail())) {
-                    emailExistente = true;
+                if (newUser.getEmail().equals(user.getEmail())) {
+                    ExistEmail = true;
                 }
-                if (nicknameExistente || emailExistente) {
+                if (ExistNickname || ExistEmail) {
                     break;
                 }
             }
-            if (nicknameExistente) {
+            if (ExistNickname) {
                 AppController.showAlertForNickname();
-            } else if (emailExistente) {
+            } else if (ExistEmail) {
                 AppController.showAlertForEmail();
             } else {
-                nuevoUsuario.setPassword(User.hashPassword(nuevoUsuario.getPassword()));
-                XMLUser.agregarUsuario(nuevoUsuario);
+                newUser.setPassword(User.hashPassword(newUser.getPassword()));
+                XMLUser.addUserXML(newUser);
                 changeSceneToInicioSesion();
             }
         }
