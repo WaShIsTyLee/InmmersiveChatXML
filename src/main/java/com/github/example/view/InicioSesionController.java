@@ -10,29 +10,34 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class InicioSesionController extends Controller implements Initializable {
     @FXML
-    Button buttonIniciarSesion;
+    Button buttonLogIn;
     @FXML
     Button buttonRegister;
     @FXML
-    TextField nombreUsuario;
+    TextField UserName;
     @FXML
-    PasswordField contraseña;
+    PasswordField password;
 
 
     @FXML
+    /**
+     * Collects and verifies user login values from the input fields.
+     *
+     * @return The fully populated User object if credentials are valid, or null if invalid.
+     * @throws Exception If an error occurs during the login process.
+     */
     private User takeValuesLogin() throws Exception {
-        if (nombreUsuario == null || contraseña == null) {
+        if (UserName == null || password == null) {
             throw new NullPointerException("Campos no inicializados");
         }
-        String nickname = nombreUsuario.getText();
-        String password = contraseña.getText();
+        String nickname = UserName.getText();
+        String password = this.password.getText();
         User auxUser = new User();
         auxUser.setNickname(nickname);
         auxUser.setPassword(User.hashPassword(password));
@@ -47,10 +52,16 @@ public class InicioSesionController extends Controller implements Initializable 
         return fullUser;
     }
 
-
+    /**
+     * Verifies the provided user credentials against the stored user records.
+     *
+     * @param tempUser The user object containing the nickname and password to verify.
+     * @return The matching User object if credentials are valid, or null if no match is found.
+     * @throws Exception If an error occurs while retrieving users or verifying credentials.
+     */
     private static User verifyCredentials(User tempUser) throws Exception {
-        List<User> usuarios = XMLUser.obtenerUsuarios();
-        for (User storedUser : usuarios) {
+        List<User> users = XMLUser.getUsersFromXml();
+        for (User storedUser : users) {
             System.out.println(storedUser);
             if (tempUser.getNickname().equals(storedUser.getNickname()) &&
                     tempUser.getPassword().equals(storedUser.getPassword())) {

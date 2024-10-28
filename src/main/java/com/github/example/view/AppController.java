@@ -23,7 +23,13 @@ public class AppController extends Controller implements Initializable {
     @FXML
     static Alert alertError = new Alert(Alert.AlertType.ERROR);
 
+
+
     @FXML
+    /**
+     *Displays an error alert dialog for a failed login attempt.
+     *This alert informs the user that the password or email does not match.
+     */
     public static void showAlertForLogin() {
         alertError.setTitle("❌ Error al registrarse ❌");
         alertError.setHeaderText(null);
@@ -32,6 +38,9 @@ public class AppController extends Controller implements Initializable {
     }
 
     @FXML
+    /**
+     * Displays an error alert dialog to inform the user that no contact was selected.
+     */
     public static void showAlertForContactSelected() {
         alertError.setTitle("❌ Error al seleccionar contacto ❌");
         alertError.setHeaderText(null);
@@ -39,6 +48,11 @@ public class AppController extends Controller implements Initializable {
         alertError.showAndWait();
     }
     @FXML
+    /**
+     * Displays an error alert dialog with guidelines for creating a valid password.
+     * The alert explains the password requirements (minimum 8 characters, must include uppercase
+     * and lowercase letters, a number, and a special character).
+     */
     public static void showAlertForPassword() {
         alertError.setTitle("❌ Error en el campo contraseña ❌");
         alertError.getDialogPane().setPrefWidth(700);
@@ -49,6 +63,11 @@ public class AppController extends Controller implements Initializable {
         alertError.showAndWait();
     }
     @FXML
+    /**
+     * Displays an error alert dialog to inform the user about invalid email entry conditions.
+     * The alert specifies that the email must be a valid Gmail, Outlook, or Hotmail address
+     * and indicates if the email is already in use.
+     */
     public static void showAlertForEmail() {
         alertError.setTitle("❌ Error en el email ❌");
         alertError.getDialogPane().setPrefWidth(700);
@@ -58,7 +77,12 @@ public class AppController extends Controller implements Initializable {
                 "- El correo introducido ya existe, por favor elija otro.");
         alertError.showAndWait();
     }
+
     @FXML
+    /**
+     * Displays an error alert dialog when the user attempts to add a contact that does not exist
+     * in the database. The alert informs the user to select a different contact.
+     */
     public static void showAlertForAddContact() {
         alertError.setTitle("❌ Error al añadir contacto ❌");
         alertError.getDialogPane().setPrefWidth(700);
@@ -67,7 +91,12 @@ public class AppController extends Controller implements Initializable {
         alertError.setContentText("- Ese contacto no existe en nuestra base de datos, por favor elija otro.");
         alertError.showAndWait();
     }
+
     @FXML
+    /**
+     *  Displays an error alert dialog when the user attempts to add a contact that already exists
+     *  in their contact list. The alert informs the user that the contact is a duplicate.
+     */
     public static void showAlertForContactRepetido() {
         alertError.setTitle("❌ Error al añadir contacto ❌");
         alertError.getDialogPane().setPrefWidth(700);
@@ -76,7 +105,13 @@ public class AppController extends Controller implements Initializable {
         alertError.setContentText("- Ese contacto ya existe en tu lista.");
         alertError.showAndWait();
     }
+
     @FXML
+    /**
+     * Displays an error alert dialog when the user attempts to register with a username
+     * that is already in use. The alert informs the user to review the provided information
+     * and choose a different username.
+     */
     public static void showAlertForNickname() {
         alertError.setTitle("❌ Error al registrarse ❌");
         alertError.setHeaderText(null);
@@ -119,17 +154,6 @@ public class AppController extends Controller implements Initializable {
     }
 
 
-    public void openModal(Scenes scene, String title, Controller parent, Object data) throws Exception {
-        View view = loadFXML(scene);
-        Stage stage = new Stage();
-        stage.setTitle(title);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(App.stage);
-        Scene _scene = new Scene(view.scene);
-        stage.setScene(_scene);
-        view.controller.onOpen(parent);
-        stage.showAndWait();
-    }
 
 
 }

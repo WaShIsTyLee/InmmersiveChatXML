@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<messages>
+    <message>
+        <date>2024-10-27T16:37:54.0652806</date>
+        <text>hola</text>
+        <senderContact>
+            <email>hugo@gmail.com</email>
+            <name>hugo</name>
+            <nickname>hugo</nickname>
+        </senderContact>
+        <receiverContact>
+            <email>alonso@gmail.com</email>
+            <name>alonso</name>
+            <nickname>alonso</nickname>
+        </receiverContact>
+    </message>
+    <message>
+        <date>2024-10-27T16:38:17.9827116</date>
+        <text>guapo como estas bombon de licor te quiero mucho</text>
+        <senderContact>
+            <email>hugo@gmail.com</email>
+            <name>hugo</name>
+            <nickname>hugo</nickname>
+        </senderContact>
+        <receiverContact>
+            <email>alonso@gmail.com</email>
+            <name>alonso</name>
+            <nickname>alonso</nickname>
+        </receiverContact>
+    </message>
+    <message>
+        <date>2024-10-27T16:38:50.438665</date>
+        <text>dejame loco</text>
+        <senderContact>
+            <email>alonso@gmail.com</email>
+            <name>alonso</name>
+            <nickname>alonso</nickname>
+        </senderContact>
+        <receiverContact>
+            <email>hugo@gmail.com</email>
+            <name>hugo</name>
+            <nickname>hugo</nickname>
+        </receiverContact>
+    </message>
+</messages>

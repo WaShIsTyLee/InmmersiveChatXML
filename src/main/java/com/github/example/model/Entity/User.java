@@ -21,15 +21,15 @@ public class User  {
     @XmlElement
     public String password;
     @XmlElement
-    public List<Contacto> contactos;
+    public List<Contact> contacts;
 
 
-    public User(String name, String email, String nickname, String password, List<Contacto> contactos) {
+    public User(String name, String email, String nickname, String password, List<Contact> contacts) {
         this.name = name;
         this.email = email;
         this.nickname = nickname;
         this.password = password;
-        this.contactos = contactos;
+        this.contacts = contacts;
     }
     public User(String name, String email, String nickname, String password) {
         this.name = name;
@@ -38,12 +38,12 @@ public class User  {
         this.password = password;
     }
 
-    public List<Contacto> getContactos() {
-        return contactos;
+    public List<Contact> getContacts() {
+        return contacts;
     }
 
-    public void setContactos(List<Contacto> contactos) {
-        this.contactos = contactos;
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     public User() {
@@ -107,6 +107,13 @@ public class User  {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    /**
+     * Hashes the provided password using the SHA-256 algorithm.
+     *
+     * @param pass The password to be hashed.
+     * @return The hashed password as a hexadecimal string.
+     */
     public static String hashPassword(String pass) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -121,16 +128,35 @@ public class User  {
             throw new RuntimeException("SHA-256 algorithm not found", e);
         }
     }
+
+    /**
+     * Validates the provided password against specified criteria:
+     * - At least 8 characters long
+     * - At least one lowercase letter
+     * - At least one uppercase letter
+     * - At least one digit
+     * - At least one special character
+     *
+     * @param password The password to validate.
+     * @return True if the password is valid; false otherwise.
+     */
     public static boolean validatePassword(String password) {
         boolean result = false;
         Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.#_()%?&])[A-Za-z\\d@$!.#_()%?&]{8,}$");
-        Matcher contrasenaMatcher = passwordPattern.matcher(password);
-        if (contrasenaMatcher.matches()) {
+        Matcher passwordMatcher = passwordPattern.matcher(password);
+        if (passwordMatcher.matches()) {
             result = true;
         }
         return result;
     }
 
+    /**
+     * Validates the provided email address to ensure it follows the correct format
+     * for Gmail, Outlook, or Hotmail.
+     *
+     * @param mail The email address to validate.
+     * @return True if the email address is valid; false otherwise.
+     */
     public static boolean validateEmail(String mail) {
         boolean result = false;
         Pattern mailPattern = Pattern.compile("[A-Za-z0-9]+@+(gmail|outlook|hotmail)\\.(com|es)");

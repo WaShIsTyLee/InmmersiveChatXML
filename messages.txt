@@ -1,0 +1,11 @@
+Conversación entre hugo y alonso:
+------------------------------------------------
+Fecha: 2024-10-27T16:37:54.065280600
+hugo: hola
+-------------------------------
+Fecha: 2024-10-27T16:38:17.982711600
+hugo: guapo como estas bombon de licor te quiero mucho
+-------------------------------
+Fecha: 2024-10-27T16:38:50.438665
+alonso: dejame loco
+-------------------------------

@@ -1,6 +1,6 @@
 package com.github.example.Test;
 
-import com.github.example.model.Entity.Contacto;
+import com.github.example.model.Entity.Contact;
 import com.github.example.model.Entity.Message;
 import com.github.example.model.Entity.User;
 import com.github.example.model.XML.XMLMessage;
@@ -17,10 +17,10 @@ public class Test2 {
         User user1 = new User("juanito");
         User user2 = new User( "mariquilla");
 
-        Contacto contacto = new Contacto();
-        Contacto contacto2 = new Contacto();
+        Contact contact = new Contact();
+        Contact contact2 = new Contact();
 
-        Message mensaje1 = new Message(now,"hola guapo", contacto,contacto2);
+        Message mensaje1 = new Message(now,"hola guapo", contact, contact2);
 
         xmlMessage.addMessage(mensaje1);
 

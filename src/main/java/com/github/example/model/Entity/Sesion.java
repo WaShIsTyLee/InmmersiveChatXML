@@ -20,7 +20,7 @@ public class Sesion {
         userLoged = user;
     }
 
-    public User getUsuarioIniciado() {
+    public User getUserLoged() {
         return userLoged;
     }
 
